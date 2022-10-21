@@ -1,0 +1,5 @@
+.reports
+.svelte-kit
+build
+node_modules
+*.log
