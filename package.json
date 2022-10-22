@@ -1,10 +1,11 @@
 {
-	"name": "template",
-	"version": "0.0.0",
+	"name": "template-app",
+	"version": "0.0.1",
 	"dependencies": {
 		"@fundamend/components-layout": "^0.0.1",
 		"@fundamend/css": "^0.0.1",
-		"@fundamend/css-theme-playful": "^0.0.1"
+		"@fundamend/css-theme-playful": "^0.0.1",
+		"@stytch/vanilla-js": "^0.4.6"
 	},
 	"devDependencies": {
 		"@fundamend/config-eslint": "^0.1.1",
