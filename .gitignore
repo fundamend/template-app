@@ -2,4 +2,6 @@
 .svelte-kit
 build
 node_modules
+.dev.vars
+.env
 *.log

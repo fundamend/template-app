@@ -2,10 +2,12 @@
 	"name": "template-app",
 	"version": "0.0.1",
 	"dependencies": {
+		"@clerk/clerk-js": "^4.11.0",
 		"@fundamend/components-layout": "^0.0.1",
 		"@fundamend/css": "^0.0.1",
 		"@fundamend/css-theme-playful": "^0.0.1",
-		"@stytch/vanilla-js": "^0.4.6"
+		"@fundamend/pages-plugin-verify-jwt": "*",
+		"@tsndr/cloudflare-worker-jwt": "^2.1.2"
 	},
 	"devDependencies": {
 		"@fundamend/config-eslint": "^0.1.1",
