@@ -1,7 +1,19 @@
 <script>
 	import { onMount } from 'svelte';
+	import * as Sentry from "@sentry/browser";
+	import { BrowserTracing } from "@sentry/tracing";
 
+	const sentryDSN = import.meta.env.VITE_SENTRY_DSN;
 	const clerkFrontendApi = import.meta.env.VITE_CLERK_FRONTEND_API;
+	const version = __APP_VERSION__;
+
+	Sentry.init({
+		dsn: sentryDSN,
+		release: version,
+		integrations: [new BrowserTracing()],
+		tracesSampleRate: 1.0,
+	});
+
 	let clerkPromise = Promise.resolve();
 
 	// TODO: have one singleton clerk instance in the store that is created once logging in and destroyed on logout
