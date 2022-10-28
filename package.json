@@ -6,7 +6,7 @@
 		"@fundamend/components-layout": "^0.0.1",
 		"@fundamend/css": "^0.0.1",
 		"@fundamend/css-theme-playful": "^0.0.1",
-		"@fundamend/pages-plugin-verify-jwt": "*",
+		"@fundamend/pages-plugin-verify-jwt": "^0.0.1",
 		"@tsndr/cloudflare-worker-jwt": "^2.1.2"
 	},
 	"devDependencies": {
