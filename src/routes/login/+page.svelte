@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-	const clerkFrontendApi = import.meta.env.VITE_CLERK_FRONTEND_API;
+	const clerkFrontendApi = import.meta.env.PUBLIC_CLERK_FRONTEND_API;
 
 	onMount(async () => {
 		const Clerk = (await import('@clerk/clerk-js')).default;
