@@ -1,23 +1,19 @@
-name: Release
+name: Release Dev
 
 on:
  push:
   branches:
-    - main
+    - 'dev'
 
 jobs:
-  release:
+  release-dev:
     runs-on: ubuntu-latest
     steps:
-      - name: Release
-        uses: fundamend/action-monorepo-package-release@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Sentry Release Upload
         uses: fundamend/action-sentry-release-upload@main
         with:
-          environment: 'production'
-          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          environment: 'preview'
+          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
           sentry-organization: 'decouplr'
           sentry-project: 'template-app'
           sourcemaps-path: 'build'

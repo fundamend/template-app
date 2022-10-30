@@ -3,18 +3,24 @@
 	import * as Sentry from "@sentry/browser";
 	import { BrowserTracing } from "@sentry/tracing";
 
-	const sentryDSN = import.meta.env.VITE_SENTRY_DSN;
-	const clerkFrontendApi = import.meta.env.VITE_CLERK_FRONTEND_API;
+	const sentryDSN = import.meta.env.PUBLIC_SENTRY_DSN;
+	const clerkFrontendApi = import.meta.env.PUBLIC_CLERK_FRONTEND_API;
+	const environment = import.meta.env.PUBLIC_NODE_ENV;
 	const version = __APP_VERSION__;
 
 	Sentry.init({
 		dsn: sentryDSN,
+		environment: environment,
 		release: version,
 		integrations: [new BrowserTracing()],
 		tracesSampleRate: 1.0,
 	});
 
 	let clerkPromise = Promise.resolve();
+
+	const sentryTest = () => {
+		myUndefined();
+	};
 
 	// TODO: have one singleton clerk instance in the store that is created once logging in and destroyed on logout
 	onMount(async () => {
@@ -37,6 +43,8 @@
 	{:catch error}
 		<p style="color: red">{ error.message }</p>
 	{/await}
+
+	<button on:click={sentryTest()}>Sentry Test {environment}</button>
 </header>
 
 <slot></slot>
