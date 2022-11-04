@@ -12,6 +12,8 @@
 
 {#if auth?.session?.status === 'active'}
 	<slot></slot>
+{:else if auth?.session === undefined}
+	Loading...
 {:else}
 	You are not logged in...
 {/if}
