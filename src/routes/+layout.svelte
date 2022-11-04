@@ -4,7 +4,6 @@
 	import { BrowserTracing } from "@sentry/tracing";
 
 	const sentryDSN = import.meta.env.PUBLIC_SENTRY_DSN;
-	const clerkFrontendApi = import.meta.env.PUBLIC_CLERK_FRONTEND_API;
 	const environment = import.meta.env.PUBLIC_NODE_ENV;
 	const version = __APP_VERSION__;
 
@@ -18,35 +17,21 @@
 		});
 	}
 
-	let clerkPromise = Promise.resolve();
+	let auth;
 
-	const sentryTest = () => {
-		myUndefined();
-	};
-
-	// TODO: have one singleton clerk instance in the store that is created once logging in and destroyed on logout
 	onMount(async () => {
-		const Clerk = (await import('@clerk/clerk-js')).default;
-		const clerk = new Clerk(clerkFrontendApi);
-		await clerk.load ();
-		clerkPromise = clerk.session?.status;
+		auth = await (await import('$lib/auth.js')).default;
 	});
 </script>
 
 <header>
-	{#await clerkPromise}
-		<p>...waiting</p>
-	{:then session}
-		{#if session === 'active'}
-			<a href="/logout">Logout</a>
-		{:else}
-			<a href="/login">Login</a>
-		{/if}
-	{:catch error}
-		<p style="color: red">{ error.message }</p>
-	{/await}
-
-	<button on:click={sentryTest()}>Sentry Test {environment}</button>
+	<a href="/">Home</a>
+	<a href="/test">Test</a>
+	{#if auth?.session?.status === 'active'}
+		<a href="/logout">Logout</a>
+	{:else}
+		<a href="/login">Login</a>
+	{/if}
 </header>
 
 <slot></slot>
