@@ -8,13 +8,15 @@
 	const environment = import.meta.env.PUBLIC_NODE_ENV;
 	const version = __APP_VERSION__;
 
-	Sentry.init({
-		dsn: sentryDSN,
-		environment: environment,
-		release: version,
-		integrations: [new BrowserTracing()],
-		tracesSampleRate: 1.0,
-	});
+	if (!environment === 'development') {
+		Sentry.init({
+			dsn: sentryDSN,
+			environment: environment,
+			release: version,
+			integrations: [new BrowserTracing()],
+			tracesSampleRate: 1.0,
+		});
+	}
 
 	let clerkPromise = Promise.resolve();
 
