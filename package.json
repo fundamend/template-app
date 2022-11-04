@@ -58,8 +58,7 @@
 		"prod": "vite build",
 		"prod:preview": "vite preview",
 		"prod:watch": "wrangler pages dev build --live-reload",
-		"release:prepare": "cross-env-shell \"standard-version -t $npm_package_name@\"",
-		"sentry:upload": "sentry-cli releases files $npm_package_version upload-sourcemaps build --org=decouplr --project=template-app"
+		"release:prepare": "cross-env-shell \"standard-version -t $npm_package_name@\""
 	},
 	"type": "module"
 }
