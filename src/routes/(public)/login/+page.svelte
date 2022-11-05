@@ -3,7 +3,7 @@
 
 	onMount(async () => {
 		const auth = await (await import('$lib/auth.js')).default;
-		auth.redirectToSignIn();
+		await auth.logIn();
 	})
 </script>
 

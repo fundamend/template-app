@@ -17,12 +17,13 @@
 		});
 	}
 
-	let auth;
+	let isLoggedInPromise;
 
 	onMount(async () => {
 		await import('@fundamend/components-layout');
 		await import('@fundamend/css');
-		auth = await (await import('$lib/auth.js')).default;
+		const auth = await (await import('$lib/auth.js')).default;
+		isLoggedInPromise = auth.isLoggedIn();
 	});
 </script>
 
@@ -34,16 +35,20 @@
 			</fundamend-cluster>
 			<fundamend-cluster center>
 				<a href="/public">Public</a>
-				{#if auth?.session?.status === 'active'}
-					<a href="/private">Private</a>
-				{/if}
+				{#await isLoggedInPromise then isLoggedIn}
+					{#if isLoggedIn}
+						<a href="/private">Private</a>
+					{/if}
+				{/await}
 			</fundamend-cluster>
 			<fundamend-cluster end>
-				{#if auth?.session?.status === 'active'}
-					<a href="/logout">Logout</a>
-				{:else}
-					<a href="/login">Login</a>
-				{/if}
+				{#await isLoggedInPromise then isLoggedIn}
+					{#if isLoggedIn}
+						<a href="/logout">Logout</a>
+					{:else}
+						<a href="/login">Login</a>
+					{/if}
+				{/await}
 			</fundamend-cluster>
 		</fundamend-stack>
 	</fundamend-box>

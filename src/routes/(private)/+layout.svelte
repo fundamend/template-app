@@ -1,22 +1,30 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let auth;
+	let isLoggedInPromise;
 
 	onMount(async () => {
-		auth = await (await import('$lib/auth.js')).default;
+		const auth = await (await import('$lib/auth.js')).default;
+		isLoggedInPromise = auth.isLoggedIn();
 	});
 </script>
 
 <div class="indicator"></div>
 
-{#if auth?.session?.status === 'active'}
-	<slot></slot>
-{:else if auth?.session === undefined}
+{#await isLoggedInPromise}
 	Loading...
-{:else}
-	You are not logged in...
-{/if}
+{:then isLoggedIn}
+	{#if isLoggedIn}
+		<slot></slot>
+	{:else}
+		<fundamend-center>
+			<fundamend-box>
+				You are not logged in.<br>
+				<a href="/login">Log in here</a>.
+			</fundamend-box>
+		</fundamend-center>
+	{/if}
+{/await}
 
 <style>
 	.indicator {

@@ -8,7 +8,27 @@ async function init() {
 		clerk = new Clerk(clerkFrontendApi);
 		await clerk.load();
 	}
-	return clerk;
+	return auth;
+}
+
+async function isLoggedIn() {
+	return await clerk?.session?.status === 'active' ? true : false;
+}
+
+async function logIn() {
+	await clerk.redirectToSignIn();
+}
+
+async function logOut(callback) {
+	await clerk.signOut(async () => {
+		await callback();
+	});
+}
+
+const auth = {
+	isLoggedIn: isLoggedIn,
+	logIn: logIn,
+	logOut: logOut
 }
 
 export default init();
