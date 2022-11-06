@@ -7,6 +7,22 @@
 	const environment = import.meta.env.PUBLIC_NODE_ENV;
 	const version = __APP_VERSION__;
 
+	const dropdown = [
+		{
+			text: 'Menu',
+			children: [
+				{
+					text: 'Account',
+					href: '/account'
+				},
+				{
+					text: 'Logout',
+					href: '/logout'
+				}
+			]
+		}
+	]
+
 	if (!environment === 'development') {
 		Sentry.init({
 			dsn: sentryDSN,
@@ -44,7 +60,7 @@
 			<fundamend-cluster end>
 				{#await isLoggedInPromise then isLoggedIn}
 					{#if isLoggedIn}
-						<a href="/logout">Logout</a>
+						<fundamend-dropdown data-items={JSON.stringify(dropdown)}></fundamend-dropdown>
 					{:else}
 						<a href="/login">Login</a>
 					{/if}

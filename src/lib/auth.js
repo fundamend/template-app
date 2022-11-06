@@ -25,10 +25,15 @@ async function logOut(callback) {
 	});
 }
 
+async function userProfile() {
+	await clerk.redirectToUserProfile();
+}
+
 const auth = {
 	isLoggedIn: isLoggedIn,
 	logIn: logIn,
-	logOut: logOut
+	logOut: logOut,
+	userProfile: userProfile
 }
 
 export default init();
