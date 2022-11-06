@@ -4,7 +4,7 @@
 	"dependencies": {
 		"@clerk/clerk-js": "^4.11.0",
 		"@cloudflare/pages-plugin-sentry": "^1.0.0",
-		"@fundamend/components-layout": "^0.0.1",
+		"@fundamend/components-layout": "^0.0.2",
 		"@fundamend/css": "^0.0.1",
 		"@fundamend/css-theme-playful": "^0.0.1",
 		"@fundamend/pages-plugin-verify-jwt": "^0.0.7",
