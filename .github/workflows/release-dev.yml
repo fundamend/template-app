@@ -1,14 +1,20 @@
 name: Release Dev
 
 on:
- push:
-  branches:
-    - 'dev'
+  push:
+    branches:
+      - 'dev'
 
 jobs:
   release-dev:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - name: Publish Worker
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: publish --env development
       - name: Sentry Release Upload
         uses: fundamend/action-sentry-release-upload@main
         with:

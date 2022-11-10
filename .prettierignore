@@ -3,10 +3,4 @@
 build
 node_modules
 .*ignore
-*.afdesign
-*.feature
 *.log
-*.mp3
-*.png
-*.snap
-*.svg

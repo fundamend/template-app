@@ -1,0 +1,3 @@
+name = 'test'
+compatibility_date = '2022-10-21'
+main = './src/index.js'

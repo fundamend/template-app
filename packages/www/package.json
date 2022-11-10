@@ -1,0 +1,24 @@
+{
+	"name": "www",
+	"version": "0.0.0",
+	"dependencies": {
+		"@fundamend/components-layout": "^0.0.2",
+		"@fundamend/css": "^0.0.1",
+		"@fundamend/css-theme-playful": "^0.0.1",
+		"astro": "^1.6.3"
+	},
+	"devDependencies": {
+		"rimraf": "^3.0.2",
+		"wrangler": "^2.1.13"
+	},
+	"license": "MIT",
+	"main": "src/pages.index.astro",
+	"scripts": {
+		"clean": "rimraf .svelte-kit build *.log",
+		"clean:all": "yarn clean && rimraf node_modules",
+		"dev": "astro dev",
+		"prod": "astro build",
+		"prod:watch": "wrangler pages dev build --live-reload"
+	},
+	"type": "module"
+}

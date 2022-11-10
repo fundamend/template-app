@@ -13,9 +13,9 @@ This template shows how to put together an app with the tooling and infrastructu
 
 ### Initialize the Repository
 
-1. Run `yarn init`
-2. Add a `README.md`
-3. Commit everything as 'chore: initial commit'
-4. Push the changes to Github
+1.  Run `yarn init`
+2.  Add a `README.md`
+3.  Commit everything as 'chore: initial commit'
+4.  Push the changes to Github
 
 ### Configure Linting
