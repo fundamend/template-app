@@ -1,2 +1,4 @@
 name = 'www'
 compatibility_date = '2022-10-21'
+
+[env.development]
