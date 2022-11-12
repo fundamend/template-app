@@ -15,4 +15,4 @@ jobs:
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url: git@github.com:fundamend/template-app-mirror.git
-          ssh_private_key: ${{ secrets.TEMPLATE_APP_MIRROW_DEPLOY_KEY }}
+          ssh_private_key: ${{ secrets.TEMPLATE_APP_MIRROR_DEPLOY_KEY }}
