@@ -1,5 +1,3 @@
-/* global STRIPE_SECRET_API_KEY, STRIPE_CLI_WEBHOOK_SECRET */
-
 import Stripe from 'stripe';
 
 async function handleRequest(request, env) {
