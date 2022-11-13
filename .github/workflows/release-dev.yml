@@ -6,33 +6,51 @@ on:
       - 'dev'
 
 jobs:
-  release-dev:
+  sentry-release-upload:
+    name: Sentry Release Upload
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        arrays: [
+          {name: "app", working-directory: "packages/app"},
+          {name: "www", working-directory: "packages/www"},
+          {name: "worker-test", working-directory: "packages/worker-test"},
+          {name: "worker-stripe", working-directory: "packages/worker-stripe"},
+        ]
     steps:
-      - name: Sentry Release Upload
-        uses: fundamend/action-sentry-release-upload@main
-        with:
-          environment: 'preview'
-          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
-          sentry-organization: 'decouplr'
-          sentry-project: 'template-app'
-          sourcemaps-path: 'build'
+    - name: Sentry Release Upload (${{ matrix.arrays.name }})
+      uses: fundamend/action-sentry-release-upload@main
+      with:
+        environment: 'preview'
+        sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
+        sentry-organization: 'decouplr'
+        sentry-project: ${{ matrix.arrays.name }}
+        working-directory: ${{ matrix.array.working-directory }}
+
+  publish-workers:
+    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
+    name: Publish Workers
+    if: ${{ !contains(github.repository, 'mirror') }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        arrays: [
+          {name: "test", working-directory: "packages/worker-test"},
+          {name: "stripe", working-directory: "packages/worker-stripe"},
+        ]
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
       - run: yarn
-      - name: Publish Test Worker
+      - name: Publish Worker (${{ matrix.arrays.name }})
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: packages/worker-test
-          command: publish --env development
-      - name: Publish Stripe Worker
-        uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: packages/worker-stripe
+          workingDirectory: ${{ matrix.arrays.working-directory }}
           command: publish --env development
