@@ -15,12 +15,6 @@ jobs:
         uses: fundamend/action-monorepo-package-release@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v3
-      - name: Publish Worker
-        uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: publish --env production
       - name: Sentry Release Upload
         uses: fundamend/action-sentry-release-upload@main
         with:
@@ -29,3 +23,21 @@ jobs:
           sentry-organization: 'decouplr'
           sentry-project: 'template-app'
           sourcemaps-path: 'build'
+            - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: yarn
+      - name: Publish Test Worker
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: packages/worker-test
+          command: publish
+      - name: Publish Stripe Worker
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: packages/worker-stripe
+          command: publish
+
