@@ -7,7 +7,7 @@ on:
 
 jobs:
   sentry-release-upload:
-    name: Sentry Release Upload
+    name: Sentry Release Upload (${{ matrix.arrays.name }})
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
@@ -21,18 +21,18 @@ jobs:
           {name: "worker-stripe", working-directory: "packages/worker-stripe"},
         ]
     steps:
-    - name: Sentry Release Upload (${{ matrix.arrays.name }})
+    - name: Sentry Release Upload
       uses: fundamend/action-sentry-release-upload@main
       with:
         environment: 'preview'
         sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
         sentry-organization: 'decouplr'
         sentry-project: ${{ matrix.arrays.name }}
-        working-directory: ${{ matrix.array.working-directory }}
+        working-directory: ${{ matrix.arrays.working-directory }}
 
   publish-workers:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
-    name: Publish Workers
+    name: Publish Workers (${{ matrix.arrays.name }})
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: '16'
       - run: yarn
-      - name: Publish Worker (${{ matrix.arrays.name }})
+      - name: Publish Worker
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
