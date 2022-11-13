@@ -36,4 +36,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: packages/worker-stripe
           command: publish --env development
-
