@@ -2,18 +2,17 @@
 
 import Stripe from 'stripe';
 
-const stripe = Stripe(STRIPE_SECRET_API_KEY, {
-	httpClient: Stripe.createFetchHttpClient()
-});
-const cryptoProvider = Stripe.createSubtleCryptoProvider();
-
-async function handleRequest(request) {
+async function handleRequest(request, env) {
+	const stripe = Stripe(env.STRIPE_SECRET_API_KEY, {
+		httpClient: Stripe.createFetchHttpClient()
+	});
+	const cryptoProvider = Stripe.createSubtleCryptoProvider();
 	const body = await request.text();
 	const sig = request.headers.get('stripe-signature');
 	const event = stripe.webhooks.constructEvent(
 		body,
 		sig,
-		STRIPE_CLI_WEBHOOK_SECRET,
+		env.STRIPE_CLI_WEBHOOK_SECRET,
 		undefined,
 		cryptoProvider
 	);

@@ -28,8 +28,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: packages/worker-stripe
           command: publish --env development
-        env:
-          STRIPE_SECRET_API_KEY: ${{ secrets.STRIPE_SECRET_API_KEY }}
       - name: Sentry Release Upload
         uses: fundamend/action-sentry-release-upload@main
         with:
