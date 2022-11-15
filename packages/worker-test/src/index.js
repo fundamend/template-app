@@ -1,9 +1,9 @@
-import Toucan from 'toucan-js';
+import CrashReporter from '../../../lib/sentry-crash-reporter.js';
 import { version } from '../package.json';
 
 addEventListener('fetch', (event) => {
 	const environment =  NODE_ENV;
-	let sentry;
+	let crashReporter;
 
 	async function handleRequest(request) {
 		try {
@@ -16,15 +16,15 @@ addEventListener('fetch', (event) => {
 			});
 		} catch (error) {
 			if(environment != 'development') {
-				if (!sentry) {
-					sentry = new Toucan({
+				if (!crashReporter) {
+					crashReporter = new CrashReporter({
 						dsn: SENTRY_DSN,
 						context: event,
 						environment: environment,
 						release: version
 					});
 				}
-				sentry.captureException(error);
+				crashReporter.captureException(error);
 				return new Response('Something went wrong', {
 					status: 500,
 					statusText: 'Internal Server Error',
