@@ -4,10 +4,10 @@
 	"dependencies": {
 		"@fundamend/components-layout": "^0.0.2",
 		"@fundamend/css": "^0.0.1",
-		"@fundamend/css-theme-playful": "^0.0.1",
-		"astro": "^1.6.3"
+		"@fundamend/css-theme-playful": "^0.0.1"
 	},
 	"devDependencies": {
+		"astro": "^1.6.3",
 		"rimraf": "^3.0.2",
 		"wrangler": "^2.1.13"
 	},
