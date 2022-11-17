@@ -15,10 +15,10 @@ jobs:
     strategy:
       matrix:
         arrays: [
-          {name: "app", working-directory: "packages/app"},
-          {name: "www", working-directory: "packages/www"},
-          {name: "worker-test", working-directory: "packages/worker-test"},
-          {name: "worker-stripe", working-directory: "packages/worker-stripe"},
+          {name: "app", working-directory: "packages/app", build-command: "npm run prod"},
+          {name: "www", working-directory: "packages/www", build-command: "npm run prod"},
+          {name: "worker-test", working-directory: "packages/worker-test", build-command: "npm run prod:preview"},
+          {name: "worker-stripe", working-directory: "packages/worker-stripe", build-command: "npm run prod:preview"},
         ]
     steps:
     - name: Sentry Release Upload
