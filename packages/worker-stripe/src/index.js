@@ -1,9 +1,11 @@
+/* global NODE_ENV, callUndefinedFunction, STRIPE_SECRET_API_KEY, STRIPE_CLI_WEBHOOK_SECRET, SENTRY_DSN */
+
 import CrashReporter from '../../../lib/sentry-crash-reporter.js';
 import { version } from '../package.json';
 import Stripe from 'stripe';
 
 addEventListener('fetch', (event) => {
-	const environment =  NODE_ENV;
+	const environment = NODE_ENV;
 	let crashReporter;
 
 	async function handleRequest(request) {
@@ -50,7 +52,7 @@ addEventListener('fetch', (event) => {
 				headers: { 'Content-type': 'application/json' }
 			});
 		} catch (error) {
-			if(environment != 'development') {
+			if (environment != 'development') {
 				if (!crashReporter) {
 					crashReporter = new CrashReporter({
 						dsn: SENTRY_DSN,
@@ -67,7 +69,7 @@ addEventListener('fetch', (event) => {
 				throw error;
 			}
 		}
-	};
+	}
 
 	event.respondWith(handleRequest(event.request));
 });

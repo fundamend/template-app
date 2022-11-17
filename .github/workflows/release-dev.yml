@@ -13,22 +13,39 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arrays: [
-          {name: "app", working-directory: "packages/app", build-command: "npm run prod"},
-          {name: "www", working-directory: "packages/www", build-command: "npm run prod"},
-          {name: "worker-test", working-directory: "packages/worker-test", build-command: "npm run prod:preview"},
-          {name: "worker-stripe", working-directory: "packages/worker-stripe", build-command: "npm run prod:preview"},
-        ]
+        arrays:
+          [
+            {
+              name: 'app',
+              working-directory: 'packages/app',
+              build-command: 'npm run prod'
+            },
+            {
+              name: 'www',
+              working-directory: 'packages/www',
+              build-command: 'npm run prod'
+            },
+            {
+              name: 'worker-test',
+              working-directory: 'packages/worker-test',
+              build-command: 'npm run prod:preview'
+            },
+            {
+              name: 'worker-stripe',
+              working-directory: 'packages/worker-stripe',
+              build-command: 'npm run prod:preview'
+            }
+          ]
     steps:
-    - name: Sentry Release Upload
-      uses: fundamend/action-sentry-release-upload@main
-      with:
-        environment: 'preview'
-        sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
-        sentry-organization: 'decouplr'
-        sentry-project: ${{ matrix.arrays.name }}
-        working-directory: ${{ matrix.arrays.working-directory }}
-        build-command: ${{ matrix.arrays.build-command }}
+      - name: Sentry Release Upload
+        uses: fundamend/action-sentry-release-upload@main
+        with:
+          environment: 'preview'
+          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
+          sentry-organization: 'decouplr'
+          sentry-project: ${{ matrix.arrays.name }}
+          working-directory: ${{ matrix.arrays.working-directory }}
+          build-command: ${{ matrix.arrays.build-command }}
 
   publish-workers:
     name: Publish Workers (${{ matrix.arrays.name }})
@@ -38,10 +55,11 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        arrays: [
-          {name: "test", working-directory: "packages/worker-test"},
-          {name: "stripe", working-directory: "packages/worker-stripe"},
-        ]
+        arrays:
+          [
+            { name: 'test', working-directory: 'packages/worker-test' },
+            { name: 'stripe', working-directory: 'packages/worker-stripe' }
+          ]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

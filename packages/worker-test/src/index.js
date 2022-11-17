@@ -1,21 +1,23 @@
+/* global NODE_ENV, callUndefinedFunction, SENTRY_DSN */
+
 import CrashReporter from '../../../lib/sentry-crash-reporter.js';
 import { version } from '../package.json';
 
 addEventListener('fetch', (event) => {
-	const environment =  NODE_ENV;
+	const environment = NODE_ENV;
 	let crashReporter;
 
 	async function handleRequest(request) {
 		try {
 			const body = await request.json();
-			if(body.fail) {
+			if (body.fail) {
 				callUndefinedFunction();
 			}
 			return new Response(JSON.stringify(body), {
 				headers: { 'Content-type': 'application/json' }
 			});
 		} catch (error) {
-			if(environment != 'development') {
+			if (environment != 'development') {
 				if (!crashReporter) {
 					crashReporter = new CrashReporter({
 						dsn: SENTRY_DSN,
@@ -27,7 +29,7 @@ addEventListener('fetch', (event) => {
 				crashReporter.captureException(error);
 				return new Response('Something went wrong', {
 					status: 500,
-					statusText: 'Internal Server Error',
+					statusText: 'Internal Server Error'
 				});
 			} else {
 				throw error;

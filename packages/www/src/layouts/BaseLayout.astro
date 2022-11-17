@@ -1,11 +1,11 @@
 <html>
 	<head>
 		<script>
-			import * as Sentry from "@sentry/browser";
-			import { BrowserTracing } from "@sentry/tracing";
+			import * as Sentry from '@sentry/browser';
+			import { BrowserTracing } from '@sentry/tracing';
 			import { version } from '../../package.json';
 
-			const environment =  import.meta.env.PUBLIC_NODE_ENV;
+			const environment = import.meta.env.PUBLIC_NODE_ENV;
 
 			if (environment != 'development') {
 				Sentry.init({
@@ -15,7 +15,7 @@
 					environment: environment,
 					release: version
 				});
-			};
+			}
 		</script>
 	</head>
 	<body>
