@@ -4,7 +4,9 @@
 	"dependencies": {
 		"@fundamend/components-layout": "^0.0.2",
 		"@fundamend/css": "^0.0.1",
-		"@fundamend/css-theme-playful": "^0.0.1"
+		"@fundamend/css-theme-playful": "^0.0.1",
+		"@sentry/browser": "^7.20.0",
+		"@sentry/tracing": "^7.20.0"
 	},
 	"devDependencies": {
 		"astro": "^1.6.3",
