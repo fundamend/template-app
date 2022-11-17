@@ -11,7 +11,6 @@ jobs:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
         arrays: [
@@ -32,8 +31,8 @@ jobs:
         build-command: ${{ matrix.arrays.build-command }}
 
   publish-workers:
-    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     name: Publish Workers (${{ matrix.arrays.name }})
+    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
     continue-on-error: true
