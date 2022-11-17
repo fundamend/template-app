@@ -29,6 +29,7 @@ jobs:
         sentry-organization: 'decouplr'
         sentry-project: ${{ matrix.arrays.name }}
         working-directory: ${{ matrix.arrays.working-directory }}
+        build-command: ${{ matrix.arrays.build-command }}
 
   publish-workers:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
