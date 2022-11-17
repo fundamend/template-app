@@ -2,7 +2,8 @@
 	"name": "worker-stripe",
 	"version": "0.0.0",
 	"dependencies": {
-		"stripe": "^10.16.0"
+		"stripe": "^10.16.0",
+		"toucan-js": "^2.7.0"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",

@@ -1,9 +1,6 @@
 {
 	"name": "template-app",
 	"version": "0.0.1",
-	"dependencies": {
-		"toucan-js": "^2.7.0"
-	},
 	"devDependencies": {
 		"@fundamend/config-eslint": "^0.1.1",
 		"@fundamend/config-lint-staged": "^0.1.1",

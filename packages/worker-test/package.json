@@ -1,6 +1,9 @@
 {
 	"name": "worker-test",
 	"version": "0.0.0",
+	"dependencies": {
+		"toucan-js": "^2.7.0"
+	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",
 		"wrangler": "^2.1.13"
