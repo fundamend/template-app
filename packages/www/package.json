@@ -1,5 +1,5 @@
 {
-	"name": "www",
+	"name": "@template-app/www",
 	"version": "0.0.0",
 	"dependencies": {
 		"@fundamend/components-layout": "^0.0.2",

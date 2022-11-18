@@ -1,6 +1,6 @@
 /* global NODE_ENV, callUndefinedFunction, SENTRY_DSN */
 
-import CrashReporter from '../../../lib/sentry-crash-reporter.js';
+import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
 import { version } from '../package.json';
 
 addEventListener('fetch', (event) => {

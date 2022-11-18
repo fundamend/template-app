@@ -1,8 +1,8 @@
 {
-	"name": "worker-test",
+	"name": "@template-app/worker-test",
 	"version": "0.0.0",
 	"dependencies": {
-		"toucan-js": "^2.7.0"
+		"@template-app/adapter-crash-reporter-sentry": "^0.0.0"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",

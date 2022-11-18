@@ -1,9 +1,9 @@
 {
-	"name": "worker-stripe",
+	"name": "@template-app/worker-stripe",
 	"version": "0.0.0",
 	"dependencies": {
 		"stripe": "^10.16.0",
-		"toucan-js": "^2.7.0"
+		"@template-app/adapter-crash-reporter-sentry": "^0.0.0"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",

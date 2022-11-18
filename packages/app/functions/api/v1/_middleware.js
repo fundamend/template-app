@@ -1,4 +1,4 @@
-import CrashReporter from '../../../../../lib/sentry-crash-reporter';
+import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
 import pkg from '../../../package.json';
 
 const reportCrash = async (context) => {

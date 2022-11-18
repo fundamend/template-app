@@ -1,5 +1,5 @@
 {
-	"name": "template-app",
+	"name": "@template-app/template-app",
 	"version": "0.0.1",
 	"devDependencies": {
 		"@fundamend/config-eslint": "^0.1.1",

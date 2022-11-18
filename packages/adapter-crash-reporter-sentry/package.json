@@ -1,0 +1,14 @@
+{
+	"name": "@template-app/adapter-crash-reporter-sentry",
+	"version": "0.0.0",
+	"dependencies": {
+		"toucan-js": "^2.7.0"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

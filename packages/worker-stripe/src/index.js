@@ -1,6 +1,6 @@
 /* global NODE_ENV, callUndefinedFunction, STRIPE_SECRET_API_KEY, STRIPE_CLI_WEBHOOK_SECRET, SENTRY_DSN */
 
-import CrashReporter from '../../../lib/sentry-crash-reporter.js';
+import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
 import { version } from '../package.json';
 import Stripe from 'stripe';
 
