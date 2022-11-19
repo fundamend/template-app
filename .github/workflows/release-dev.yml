@@ -52,7 +52,6 @@ jobs:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
         arrays:
@@ -71,4 +70,29 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: ${{ matrix.arrays.working-directory }}
-          command: publish --env development
+          command: publish --env preview
+
+  publish-pages:
+    name: Publish Pages (${{ matrix.arrays.name }})
+    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
+    if: ${{ !contains(github.repository, 'mirror') }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arrays:
+          [
+            { name: 'www', working-directory: 'packages/www' },
+            { name: 'app', working-directory: 'packages/app' }
+          ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: yarn
+      - name: Publish Page
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: ${{ matrix.arrays.working-directory }}
+          command: pages publish build --branch dev --project ${{ matrix.arrays.name }}
