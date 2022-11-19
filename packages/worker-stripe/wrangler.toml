@@ -4,3 +4,5 @@ main = './src/index.js'
 node_compat = true
 
 [env.development]
+
+[env.preview]

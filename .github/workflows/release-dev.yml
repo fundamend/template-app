@@ -95,4 +95,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: ${{ matrix.arrays.working-directory }}
-          command: pages publish build --branch dev --project ${{ matrix.arrays.name }}
+          command: pages publish build --branch dev --project-name ${{ matrix.arrays.name }}
