@@ -11,6 +11,16 @@ jobs:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
+    environment: preview
+    env:
+      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
+      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      NODE_VERSION: ${{ secrets.NODE_VERSION }}
+      PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
+      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
@@ -52,6 +62,16 @@ jobs:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
+    environment: preview
+    env:
+      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
+      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      NODE_VERSION: ${{ secrets.NODE_VERSION }}
+      PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
+      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
@@ -77,6 +97,16 @@ jobs:
     # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
+    environment: preview
+    env:
+      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
+      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      NODE_VERSION: ${{ secrets.NODE_VERSION }}
+      PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
+      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
