@@ -85,14 +85,25 @@ jobs:
             { name: 'app', working-directory: 'packages/app' }
           ]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: yarn
-      - name: Publish Page
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build page
+        shell: bash
+        working-directory: ${{ matrix.arrays.working-directory }}
+        run: yarn prod
+
+      - name: Publish page
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: ${{ matrix.arrays.working-directory }}
-          command: pages publish build --branch dev --project-name ${{ matrix.arrays.name }}
+          command: pages publish build --branch dev --commit-dirty true --project-name ${{ matrix.arrays.name }}
