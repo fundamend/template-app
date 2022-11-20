@@ -61,6 +61,7 @@ jobs:
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
     environment: preview
+    env:
       NODE_ENV: ${{ secrets.NODE_ENV }}
       NODE_VERSION: ${{ secrets.NODE_VERSION }}
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
