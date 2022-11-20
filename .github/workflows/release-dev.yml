@@ -8,8 +8,35 @@ on:
 jobs:
   sentry-release-upload:
     name: Sentry Release Upload (${{ matrix.arrays.name }})
-    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
-    if: ${{ !contains(github.repository, 'mirror') }}
+    strategy:
+      matrix:
+        arrays:
+          [
+            {
+              name: 'page-app',
+              working-directory: 'packages/page-app',
+              build-command: 'npm run prod',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_APP'
+            },
+            {
+              name: 'page-www',
+              working-directory: 'packages/page-www',
+              build-command: 'npm run prod',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_WWW'
+            },
+            {
+              name: 'worker-test',
+              working-directory: 'packages/worker-test',
+              build-command: 'npm run prod:preview',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_TEST'
+            },
+            {
+              name: 'worker-stripe',
+              working-directory: 'packages/worker-stripe',
+              build-command: 'npm run prod:preview',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_STRIPE'
+            }
+          ]
     runs-on: ubuntu-latest
     environment: preview
     env:
@@ -18,32 +45,7 @@ jobs:
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
       PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
       PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
-      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-    strategy:
-      matrix:
-        arrays:
-          [
-            {
-              name: 'app',
-              working-directory: 'packages/page-app',
-              build-command: 'npm run prod'
-            },
-            {
-              name: 'www',
-              working-directory: 'packages/page-www',
-              build-command: 'npm run prod'
-            },
-            {
-              name: 'worker-test',
-              working-directory: 'packages/worker-test',
-              build-command: 'npm run prod:preview'
-            },
-            {
-              name: 'worker-stripe',
-              working-directory: 'packages/worker-stripe',
-              build-command: 'npm run prod:preview'
-            }
-          ]
+      PUBLIC_SENTRY_DSN: ${{ secrets[matrix.arrays.public-sentry-dsn-key] }}
     steps:
       - name: Sentry Release Upload
         uses: fundamend/action-sentry-release-upload@main
@@ -57,8 +59,21 @@ jobs:
 
   publish-workers:
     name: Publish Workers (${{ matrix.arrays.name }})
-    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
-    if: ${{ !contains(github.repository, 'mirror') }}
+    strategy:
+      matrix:
+        arrays:
+          [
+            {
+              name: 'worker-test',
+              working-directory: 'packages/worker-test',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_TEST'
+            },
+            {
+              name: 'worker-stripe',
+              working-directory: 'packages/worker-stripe',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_STRIPE'
+            }
+          ]
     runs-on: ubuntu-latest
     environment: preview
     env:
@@ -67,14 +82,7 @@ jobs:
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
       PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
       PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
-      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-    strategy:
-      matrix:
-        arrays:
-          [
-            { name: 'test', working-directory: 'packages/worker-test' },
-            { name: 'stripe', working-directory: 'packages/worker-stripe' }
-          ]
+      PUBLIC_SENTRY_DSN: ${{ secrets[matrix.arrays.public-sentry-dsn-key] }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -90,8 +98,21 @@ jobs:
 
   publish-pages:
     name: Publish Pages (${{ matrix.arrays.name }})
-    # This action should not run in any mirrors (used as workaround for Cloudflare Pages not supporting monorepos)
-    if: ${{ !contains(github.repository, 'mirror') }}
+    strategy:
+      matrix:
+        arrays:
+          [
+            {
+              name: 'page-www',
+              working-directory: 'packages/page-www',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_WWW'
+            },
+            {
+              name: 'page-app',
+              working-directory: 'packages/page-app',
+              public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_APP'
+            }
+          ]
     runs-on: ubuntu-latest
     environment: preview
     env:
@@ -100,14 +121,7 @@ jobs:
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
       PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
       PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
-      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-    strategy:
-      matrix:
-        arrays:
-          [
-            { name: 'www', working-directory: 'packages/page-www' },
-            { name: 'app', working-directory: 'packages/page-app' }
-          ]
+      PUBLIC_SENTRY_DSN: ${{ secrets[matrix.arrays.public-sentry-dsn-key] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
