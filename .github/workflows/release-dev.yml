@@ -13,26 +13,24 @@ jobs:
     runs-on: ubuntu-latest
     environment: preview
     env:
-      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
-      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
       NODE_ENV: ${{ secrets.NODE_ENV }}
       NODE_VERSION: ${{ secrets.NODE_VERSION }}
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
-      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
+      PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
       PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
           [
             {
               name: 'app',
-              working-directory: 'packages/app',
+              working-directory: 'packages/page-app',
               build-command: 'npm run prod'
             },
             {
               name: 'www',
-              working-directory: 'packages/www',
+              working-directory: 'packages/page-www',
               build-command: 'npm run prod'
             },
             {
@@ -51,7 +49,7 @@ jobs:
         uses: fundamend/action-sentry-release-upload@main
         with:
           environment: 'preview'
-          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN}}
+          sentry-auth-token: ${{ secrets.PRIVATE_SENTRY_AUTH_TOKEN}}
           sentry-organization: 'decouplr'
           sentry-project: ${{ matrix.arrays.name }}
           working-directory: ${{ matrix.arrays.working-directory }}
@@ -63,15 +61,12 @@ jobs:
     if: ${{ !contains(github.repository, 'mirror') }}
     runs-on: ubuntu-latest
     environment: preview
-    env:
-      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
-      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
       NODE_ENV: ${{ secrets.NODE_ENV }}
       NODE_VERSION: ${{ secrets.NODE_VERSION }}
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
-      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
+      PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
       PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
@@ -88,7 +83,7 @@ jobs:
       - name: Publish Worker
         uses: cloudflare/wrangler-action@2.0.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.PRIVATE_CLOUDFLARE_API_TOKEN }}
           workingDirectory: ${{ matrix.arrays.working-directory }}
           command: publish --env preview
 
@@ -99,20 +94,18 @@ jobs:
     runs-on: ubuntu-latest
     environment: preview
     env:
-      CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
-      JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
       NODE_ENV: ${{ secrets.NODE_ENV }}
       NODE_VERSION: ${{ secrets.NODE_VERSION }}
       PUBLIC_CLERK_FRONTEND_API: ${{ secrets.PUBLIC_CLERK_FRONTEND_API }}
-      PUBLIC_NODE_ENV: ${{ secrets.PUBLIC_NODE_ENV }}
+      PUBLIC_CLERK_JWT_VERIFICATION_KEY: ${{ secrets.PUBLIC_CLERK_JWT_VERIFICATION_KEY }}
+      PUBLIC_ENVIRONMENT: ${{ secrets.PUBLIC_ENVIRONMENT }}
       PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
     strategy:
       matrix:
         arrays:
           [
-            { name: 'www', working-directory: 'packages/www' },
-            { name: 'app', working-directory: 'packages/app' }
+            { name: 'www', working-directory: 'packages/page-www' },
+            { name: 'app', working-directory: 'packages/page-app' }
           ]
     steps:
       - name: Checkout repository
@@ -134,6 +127,6 @@ jobs:
       - name: Publish page
         uses: cloudflare/wrangler-action@2.0.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.PRIVATE_CLOUDFLARE_API_TOKEN }}
           workingDirectory: ${{ matrix.arrays.working-directory }}
           command: pages publish build --branch dev --commit-dirty true --project-name ${{ matrix.arrays.name }}

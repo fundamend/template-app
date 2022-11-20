@@ -1,4 +1,6 @@
-name = 'www'
+name = 'app'
 compatibility_date = '2022-10-21'
 
 [env.development]
+
+[env.preview]

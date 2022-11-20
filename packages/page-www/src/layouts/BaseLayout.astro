@@ -5,7 +5,7 @@
 			import { BrowserTracing } from '@sentry/tracing';
 			import { version } from '../../package.json';
 
-			const environment = import.meta.env.PUBLIC_NODE_ENV;
+			const environment = import.meta.env.PUBLIC_ENVIRONMENT;
 
 			if (environment != 'development') {
 				Sentry.init({

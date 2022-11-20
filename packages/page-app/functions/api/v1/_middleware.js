@@ -5,11 +5,11 @@ const reportCrash = async (context) => {
 	try {
 		return await context.next();
 	} catch (error) {
-		if (context.env.NODE_ENV != 'development') {
+		if (context.env.PUBLIC_ENVIRONMENT != 'development') {
 			const crashReporter = new CrashReporter({
 				context: context,
-				dsn: context.env.SENTRY_DSN,
-				environment: context.env.NODE_ENV,
+				dsn: context.env.PUBLIC_SENTRY_DSN,
+				environment: context.env.PUBLIC_ENVIRONMENT,
 				release: pkg.version
 			});
 			crashReporter.captureException(error);

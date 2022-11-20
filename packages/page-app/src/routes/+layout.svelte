@@ -5,7 +5,7 @@
 	import { base, assets } from '$app/paths';
 
 	const sentryDSN = import.meta.env.PUBLIC_SENTRY_DSN;
-	const environment = import.meta.env.PUBLIC_NODE_ENV;
+	const environment = import.meta.env.PUBLIC_ENVIRONMENT;
 	const version = __APP_VERSION__;
 
 	const dropdown = [

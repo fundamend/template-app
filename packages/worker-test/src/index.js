@@ -1,10 +1,10 @@
-/* global NODE_ENV, callUndefinedFunction, SENTRY_DSN */
+/* global callUndefinedFunction, PUBLIC_ENVIRONMENT, PUBLIC_SENTRY_DSN */
 
 import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
 import { version } from '../package.json';
 
 addEventListener('fetch', (event) => {
-	const environment = NODE_ENV;
+	const environment = PUBLIC_ENVIRONMENT;
 	let crashReporter;
 
 	async function handleRequest(request) {
@@ -20,7 +20,7 @@ addEventListener('fetch', (event) => {
 			if (environment != 'development') {
 				if (!crashReporter) {
 					crashReporter = new CrashReporter({
-						dsn: SENTRY_DSN,
+						dsn: PUBLIC_SENTRY_DSN,
 						context: event,
 						environment: environment,
 						release: version

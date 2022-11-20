@@ -1,17 +1,17 @@
-/* global NODE_ENV, callUndefinedFunction, STRIPE_SECRET_API_KEY, STRIPE_CLI_WEBHOOK_SECRET, SENTRY_DSN */
+/* global callUndefinedFunction, PRIVATE_STRIPE_CLI_WEBHOOK_SECRET, PRIVATE_STRIPE_SECRET_API_KEY, PUBLIC_ENVIRONMENT, PUBLIC_SENTRY_DSN */
 
 import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
 import { version } from '../package.json';
 import Stripe from 'stripe';
 
 addEventListener('fetch', (event) => {
-	const environment = NODE_ENV;
+	const environment = PUBLIC_ENVIRONMENT;
 	let crashReporter;
 
 	async function handleRequest(request) {
 		try {
 			callUndefinedFunction();
-			const stripe = Stripe(STRIPE_SECRET_API_KEY, {
+			const stripe = Stripe(PRIVATE_STRIPE_SECRET_API_KEY, {
 				httpClient: Stripe.createFetchHttpClient()
 			});
 			const cryptoProvider = Stripe.createSubtleCryptoProvider();
@@ -20,7 +20,7 @@ addEventListener('fetch', (event) => {
 			const event = stripe.webhooks.constructEvent(
 				body,
 				sig,
-				STRIPE_CLI_WEBHOOK_SECRET,
+				PRIVATE_STRIPE_CLI_WEBHOOK_SECRET,
 				undefined,
 				cryptoProvider
 			);
@@ -55,7 +55,7 @@ addEventListener('fetch', (event) => {
 			if (environment != 'development') {
 				if (!crashReporter) {
 					crashReporter = new CrashReporter({
-						dsn: SENTRY_DSN,
+						dsn: PUBLIC_SENTRY_DSN,
 						context: event,
 						environment: environment,
 						release: version

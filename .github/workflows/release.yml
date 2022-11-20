@@ -19,7 +19,7 @@ jobs:
         uses: fundamend/action-sentry-release-upload@main
         with:
           environment: 'production'
-          sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          sentry-auth-token: ${{ secrets.PRIVATE_SENTRY_AUTH_TOKEN }}
           sentry-organization: 'decouplr'
           sentry-project: 'template-app'
           sourcemaps-path: 'build'
@@ -31,12 +31,12 @@ jobs:
       - name: Publish Test Worker
         uses: cloudflare/wrangler-action@2.0.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.PRIVATE_CLOUDFLARE_API_TOKEN }}
           workingDirectory: packages/worker-test
           command: publish
       - name: Publish Stripe Worker
         uses: cloudflare/wrangler-action@2.0.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.PRIVATE_CLOUDFLARE_API_TOKEN }}
           workingDirectory: packages/worker-stripe
           command: publish
