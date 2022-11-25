@@ -14,25 +14,25 @@ jobs:
           [
             {
               name: 'page-app',
-              working-directory: 'packages/page-app',
+              working-directory: 'packages/drivers/page-app',
               build-command: 'npm run prod',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_APP'
             },
             {
               name: 'page-www',
-              working-directory: 'packages/page-www',
+              working-directory: 'packages/drivers/page-www',
               build-command: 'npm run prod',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_WWW'
             },
             {
               name: 'worker-test',
-              working-directory: 'packages/worker-test',
+              working-directory: 'packages/drivers/worker-test',
               build-command: 'npm run prod:preview',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_TEST'
             },
             {
               name: 'worker-stripe',
-              working-directory: 'packages/worker-stripe',
+              working-directory: 'packages/drivers/worker-stripe',
               build-command: 'npm run prod:preview',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_STRIPE'
             }
@@ -65,12 +65,12 @@ jobs:
           [
             {
               name: 'worker-test',
-              working-directory: 'packages/worker-test',
+              working-directory: 'packages/drivers/worker-test',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_TEST'
             },
             {
               name: 'worker-stripe',
-              working-directory: 'packages/worker-stripe',
+              working-directory: 'packages/drivers/worker-stripe',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_WORKER_STRIPE'
             }
           ]
@@ -104,12 +104,12 @@ jobs:
           [
             {
               name: 'page-www',
-              working-directory: 'packages/page-www',
+              working-directory: 'packages/drivers/page-www',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_WWW'
             },
             {
               name: 'page-app',
-              working-directory: 'packages/page-app',
+              working-directory: 'packages/drivers/page-app',
               public-sentry-dsn-key: 'PUBLIC_SENTRY_DSN_PAGE_APP'
             }
           ]
