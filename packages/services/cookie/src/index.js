@@ -1,5 +1,5 @@
 import AbstractCookieService from '@template-app/abstract-service-cookie';
-import { parse } from 'cookie';
+import cookie from 'cookie';
 
 export default class CookieService extends AbstractCookieService {
 	#cookies;
@@ -10,17 +10,17 @@ export default class CookieService extends AbstractCookieService {
 	}
 
 	parse(cookies) {
-		this.#cookies = parse(cookies || '');
+		this.#cookies = cookie.parse(cookies || '');
 	}
 
 	getCookie(name) {
-		const cookie = this.#cookies[name];
-		if (!cookie) {
+		const value = this.#cookies[name];
+		if (!value) {
 			throw new Error(`No cookie with the name ${name} found.`);
 		}
 		return {
-			name: cookie.name,
-			value: cookie.value
+			name: name,
+			value: value
 		};
 	}
 }

@@ -11,6 +11,6 @@ describe('When', () => {
 	test('Then correctly parse the cookie', () => {
 		const cookieService = new CookieService();
 		cookieService.parse('cookieA=1; cookieB=2');
-		expect(cookieService.getCookie('cookieB')).toEqual('2');
+		expect(cookieService.getCookie('cookieB').value).toEqual('2');
 	});
 });
