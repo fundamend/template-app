@@ -6,11 +6,21 @@ export default class JWTService extends AbstractJWTService {
 		super();
 	}
 
-	verify(token, secret, options) {
-		jwt.verify(token, secret, { algorithm: options.algorithm });
+	async encode(payload, secret, options) {
+		const mappedOptions = {
+			algorithm: options?.algorithm || 'HS256'
+		};
+		return await jwt.sign(payload, secret, mappedOptions);
 	}
 
-	decode(token) {
-		jwt.decode(token);
+	async verify(token, secret, options) {
+		const mappedOptions = {
+			algorithm: options?.algorithm || 'HS256'
+		};
+		return await jwt.verify(token, secret, mappedOptions);
+	}
+
+	async decode(token) {
+		return await jwt.decode(token);
 	}
 }
