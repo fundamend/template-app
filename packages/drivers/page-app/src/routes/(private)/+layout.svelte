@@ -2,11 +2,17 @@
 	import { onMount } from 'svelte';
 	import { base, assets } from '$app/paths';
 
+	let authenticationHandler;
 	let isLoggedInPromise;
 
 	onMount(async () => {
-		const auth = await (await import('$lib/auth.js')).default;
-		isLoggedInPromise = auth.isLoggedIn();
+		const AuthenticationHandler = await import(
+			'@template-app/adapter-authentication-handler-clerk'
+		).default;
+		authenticationHandler = new AuthenticationHandler({
+			clerkFrontendApi: import.meta.env.PUBLIC_CLERK_FRONTEND_API
+		});
+		isLoggedInPromise = authenticationHandler.isLoggedIn();
 	});
 </script>
 

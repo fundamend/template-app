@@ -1,9 +1,6 @@
 {
-	"name": "@template-app/adapter-crash-reporter-log",
+	"name": "@template-app/abstract-jwt-handler",
 	"version": "0.0.0",
-	"dependencies": {
-		"@template-app/abstract-crash-reporter": "0.0.0"
-	},
 	"license": "MIT",
 	"main": "src/index.js",
 	"scripts": {

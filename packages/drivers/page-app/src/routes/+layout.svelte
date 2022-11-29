@@ -7,6 +7,7 @@
 	const sentryDSN = import.meta.env.PUBLIC_SENTRY_DSN;
 	const environment = import.meta.env.PUBLIC_ENVIRONMENT;
 	const version = __APP_VERSION__;
+	let authenticationHandler;
 
 	const dropdown = [
 		{
@@ -39,8 +40,13 @@
 	onMount(async () => {
 		await import('@fundamend/components-layout');
 		await import('@fundamend/css');
-		const auth = await (await import('$lib/auth.js')).default;
-		isLoggedInPromise = auth.isLoggedIn();
+		const AuthenticationHandler = await import(
+			'@template-app/adapter-authentication-handler-clerk'
+		).default;
+		authenticationHandler = new AuthenticationHandler({
+			clerkFrontendApi: import.meta.env.PUBLIC_CLERK_FRONTEND_API
+		});
+		isLoggedInPromise = authenticationHandler.isLoggedIn();
 	});
 </script>
 

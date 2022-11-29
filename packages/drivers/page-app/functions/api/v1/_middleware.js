@@ -1,18 +1,18 @@
-import CrashReporter from '@template-app/adapter-crash-reporter-sentry';
-import pkg from '../../../package.json';
+import CrashHandler from '@template-app/adapter-crash-handler-sentry';
+import { version } from '@template-app/page-app/package.json';
 
 const reportCrash = async (context) => {
 	try {
 		return await context.next();
 	} catch (error) {
 		if (context.env.PUBLIC_ENVIRONMENT != 'development') {
-			const crashReporter = new CrashReporter({
+			const crashHandler = new CrashHandler({
 				context: context,
 				dsn: context.env.PUBLIC_SENTRY_DSN,
 				environment: context.env.PUBLIC_ENVIRONMENT,
-				release: pkg.version
+				release: version
 			});
-			crashReporter.captureException(error);
+			crashHandler.captureException(error);
 			return new Response('Something went wrong', {
 				status: 500,
 				statusText: 'Internal Server Error'

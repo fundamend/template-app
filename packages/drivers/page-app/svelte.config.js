@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static'; // eslint-disable-line no-restricted-imports
 
 const config = {
 	kit: {

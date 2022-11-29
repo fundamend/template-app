@@ -1,4 +1,4 @@
-import { sveltekit } from '@sveltejs/kit/vite';
+import { sveltekit } from '@sveltejs/kit/vite'; // eslint-disable-line no-restricted-imports
 
 const config = {
 	plugins: [sveltekit()],
