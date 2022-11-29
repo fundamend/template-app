@@ -1,15 +1,15 @@
-import CookieHandler from '@template-app/adapter-cookie-handler';
-import JWTHandler from '@template-app/adapter-jwt-handler';
+import CookieService from '@template-app/service-cookie';
+import JWTService from '@template-app/service-jwt';
 
 export async function onRequest({ request }) {
-	const cookieHandler = new CookieHandler();
-	const jwtHandler = new JWTHandler();
-	cookieHandler.parse(request.headers.get('Cookie') || '');
-	const sessionToken = cookieHandler.getCookie('__session');
+	const cookieService = new CookieService();
+	const jwtService = new JWTService();
+	cookieService.parse(request.headers.get('Cookie') || '');
+	const sessionToken = cookieService.getCookie('__session');
 
 	if (!sessionToken) {
 		return new Response(JSON.stringify({ message: 'no token' }));
 	} else {
-		return new Response(JSON.stringify(jwtHandler.decode(sessionToken)));
+		return new Response(JSON.stringify(jwtService.decode(sessionToken)));
 	}
 }

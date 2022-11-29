@@ -1,0 +1,15 @@
+{
+	"name": "@template-app/service-authentication-clerk",
+	"version": "0.0.0",
+	"dependencies": {
+		"@clerk/clerk-js": "^4.11.0",
+		"@template-app/abstract-service-authentication": "0.0.0"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

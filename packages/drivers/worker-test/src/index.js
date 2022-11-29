@@ -1,11 +1,11 @@
 /* global callUndefinedFunction, PUBLIC_ENVIRONMENT, PUBLIC_SENTRY_DSN */
 
-import CrashHandler from '@template-app/adapter-crash-handler-sentry';
+import CrashService from '@template-app/service-crash-sentry';
 import { version } from '@template-app/worker-test/package.json';
 
 addEventListener('fetch', (event) => {
 	const environment = PUBLIC_ENVIRONMENT;
-	let crashHandler;
+	let crashService;
 
 	async function handleRequest(request) {
 		try {
@@ -18,15 +18,15 @@ addEventListener('fetch', (event) => {
 			});
 		} catch (error) {
 			if (environment != 'development') {
-				if (!crashHandler) {
-					crashHandler = new CrashHandler({
+				if (!crashService) {
+					crashService = new CrashService({
 						dsn: PUBLIC_SENTRY_DSN,
 						context: event,
 						environment: environment,
 						release: version
 					});
 				}
-				crashHandler.captureException(error);
+				crashService.captureException(error);
 				return new Response('Something went wrong', {
 					status: 500,
 					statusText: 'Internal Server Error'

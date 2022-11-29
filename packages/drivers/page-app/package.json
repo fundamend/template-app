@@ -5,13 +5,12 @@
 		"@fundamend/components-layout": "^0.0.2",
 		"@fundamend/css": "^0.0.1",
 		"@fundamend/css-theme-playful": "^0.0.1",
-		"@fundamend/pages-plugin-verify-jwt": "^0.0.7",
 		"@sentry/browser": "^7.17.2",
 		"@sentry/tracing": "^7.17.2",
-		"@template-app/adapter-authentication-handler-clerk": "^0.0.0",
-		"@template-app/adapter-cookie-handler": "^0.0.0",
-		"@template-app/adapter-crash-handler-sentry": "^0.0.0",
-		"@template-app/adapter-jwt-handler": "^0.0.0"
+		"@template-app/service-authentication-clerk": "^0.0.0",
+		"@template-app/service-cookie": "^0.0.0",
+		"@template-app/service-crash-sentry": "^0.0.0",
+		"@template-app/service-jwt": "^0.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.48",

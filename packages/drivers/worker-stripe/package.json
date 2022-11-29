@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"dependencies": {
 		"stripe": "^10.16.0",
-		"@template-app/adapter-crash-handler-sentry": "^0.0.0"
+		"@template-app/service-crash-sentry": "^0.0.0"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",

@@ -1,16 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let authenticationHandler;
+	let authenticationService;
 
 	onMount(async () => {
-		const AuthenticationHandler = await import(
-			'@template-app/adapter-authentication-handler-clerk'
+		const AuthenticationService = await import(
+			'@template-app/service-authentication-service-clerk'
 		).default;
-		authenticationHandler = new AuthenticationHandler({
+		authenticationService = new AuthenticationService({
 			clerkFrontendApi: import.meta.env.PUBLIC_CLERK_FRONTEND_API
 		});
-		await authenticationHandler.logIn();
+		await authenticationService.logIn();
 	});
 </script>
 

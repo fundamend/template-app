@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
-		// TODO: Where to put this? authHandler or separate userHandler?
+		// TODO: Where to put this? authService or separate userService?
 		/*
 		const auth = await (await import('$lib/auth.js')).default;
 		await auth.userProfile();

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { Given, Then } from '@cucumber/cucumber';
-import Test from '../../src/index.js';
+import Test from '@template-app/entity-test';
 
 Given('a Test is initialized with nothing', function () {
 	this.test = new Test();

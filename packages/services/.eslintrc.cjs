@@ -1,21 +1,18 @@
+/*
+ ** Allow only dependencies on external modules, or abstracts, other services, use cases, and entities for all services
+ */
 module.exports = {
 	rules: {
 		'no-restricted-imports': [
 			'error',
 			{
 				patterns: [
-					// disallow all imports
-					'*',
-					// allow imports of services, use cases, and entities
-					'!@template-app',
+					'**/../*',
 					'@template-app/*',
+					'!@template-app/abstract-*',
 					'!@template-app/service-*',
 					'!@template-app/use-case-*',
-					'!@template-app/entity-*',
-					// allow self-referencing imports of package.json
-					'!@template-app/*/',
-					'@template-app/*/*',
-					'!@template-app/*/package.json'
+					'!@template-app/entity-*'
 				]
 			}
 		]

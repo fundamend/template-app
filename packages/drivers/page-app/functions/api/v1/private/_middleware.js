@@ -1,11 +1,11 @@
-import CookieHandler from '@template-app/adapter-cookie-handler';
-import JWTHandler from '@template-app/adapter-jwt-handler';
+import CookieService from '@template-app/service-cookie';
+import JWTService from '@template-app/service-jwt';
 
 const validateJWT = async ({ request, next, env }) => {
-	const cookieHandler = new CookieHandler();
-	const jwtHandler = new JWTHandler();
-	cookieHandler.parse(request.headers.get('Cookie') || '');
-	const sessionToken = cookieHandler.getCookie('__session');
+	const cookieService = new CookieService();
+	const jwtService = new JWTService();
+	cookieService.parse(request.headers.get('Cookie') || '');
+	const sessionToken = cookieService.getCookie('__session');
 
 	// TODO: Make this more generic
 	const publicKey =
@@ -17,7 +17,7 @@ const validateJWT = async ({ request, next, env }) => {
 
 	// TODO: Make algorithm a parameter
 	if (sessionToken) {
-		isValid = await jwtHandler.verify(sessionToken, publicKey, {
+		isValid = await jwtService.verify(sessionToken, publicKey, {
 			algorithm: 'RS256'
 		});
 	}
