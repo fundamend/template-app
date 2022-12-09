@@ -5,7 +5,7 @@ const validateJWT = async ({ request, next, env }) => {
 	const cookieService = new CookieService();
 	const jwtService = new JWTService();
 	cookieService.parse(request.headers.get('Cookie') || '');
-	const sessionToken = cookieService.getCookie('__session');
+	const sessionToken = cookieService.getCookie('__session').value;
 
 	// TODO: Make this more generic
 	const publicKey =

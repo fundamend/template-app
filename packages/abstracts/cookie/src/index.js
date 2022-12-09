@@ -5,11 +5,11 @@ export default class AbstractCookieService {
 		}
 	}
 
-	parse() {
+	async parse() {
 		throw new Error("Method 'parse()' must be implemented.");
 	}
 
-	getCookie() {
+	async getCookie() {
 		throw new Error("Method 'getCookie()' must be implemented.");
 	}
 }

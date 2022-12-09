@@ -1,20 +1,44 @@
 <html>
 	<head>
 		<script>
-			import * as Sentry from '@sentry/browser';
-			import { BrowserTracing } from '@sentry/tracing';
-			import { version } from '../../package.json';
+			import CrashService from '@template-app/service-crash-sentry';
+			import DependencyContainer from '@template-app/service-dependency-container-awilix';
 
-			const environment = import.meta.env.PUBLIC_ENVIRONMENT;
+			import { version } from '@template-app/page-www/package.json';
 
-			if (environment != 'development') {
-				Sentry.init({
-					dsn: import.meta.env.PUBLIC_SENTRY_DSN,
-					integrations: [new BrowserTracing()],
-					tracesSampleRate: 1.0,
-					environment: environment,
-					release: version
-				});
+			const dependencyContainer = new DependencyContainer();
+
+			dependencyContainer.register([
+				// values
+				{
+					type: 'value',
+					name: 'ENVIRONMENT',
+					value: import.meta.env.PUBLIC_ENVIRONMENT
+				},
+				{
+					type: 'value',
+					name: 'SENTRY_DSN',
+					value: import.meta.env.PUBLIC_SENTRY_DSN
+				},
+				{
+					type: 'value',
+					name: 'SENTRY_TRACE_SAMPLE_RATE',
+					value: import.meta.env.PUBLIC_SENTRY_TRACE_SAMPLE_RATE
+				},
+				{ type: 'value', name: 'VERSION', value: version },
+				// classes
+				{
+					type: 'class',
+					name: 'AuthenticationService',
+					value: CrashService,
+					singleton: true
+				}
+			]);
+
+			const environment = await dependencyContainer.resolve('ENVIRONMENT');
+
+			if (environment !== 'development') {
+				dependencyContainer.resolve('CrashService');
 			}
 		</script>
 	</head>

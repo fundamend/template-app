@@ -5,7 +5,7 @@ export default class CrashService extends AbstractCrashService {
 		super();
 	}
 
-	captureException(exception) {
+	async captureException(exception) {
 		console.log(exception);
 	}
 }

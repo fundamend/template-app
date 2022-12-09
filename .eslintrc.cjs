@@ -8,9 +8,12 @@ module.exports = {
 
 module.exports = {
 	root: true,
-	extends: ['eslint:recommended', 'prettier'],
+	extends: ['eslint:recommended', 'prettier', 'plugin:astro/recommended'],
 	plugins: ['svelte3'],
-	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+	overrides: [
+		{ files: ['*.svelte'], processor: 'svelte3/svelte3' },
+		{ files: ['*.astro'], parser: 'astro-eslint-parser' }
+	],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 'latest'

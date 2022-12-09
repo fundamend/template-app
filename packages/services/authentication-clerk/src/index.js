@@ -1,13 +1,13 @@
 import AbstractAuthenticationService from '@template-app/abstract-service-authentication';
-import Clerk from '@clerk/clerk-js';
 
 export default class AuthenticationService extends AbstractAuthenticationService {
+	#Clerk;
+	#CLERK_FRONTEND_API;
 	#clerk;
 
-	constructor(options) {
+	constructor({ CLERK_FRONTEND_API }) {
 		super();
-		const clerkFrontendApi = options.clerkFrontendApi;
-		this.#clerk = new Clerk(clerkFrontendApi);
+		this.#CLERK_FRONTEND_API = CLERK_FRONTEND_API;
 	}
 
 	/*
@@ -19,14 +19,20 @@ export default class AuthenticationService extends AbstractAuthenticationService
 	 ** Per convention, always use async factory functions for all handlers, even if not required?
 	 ** Maybe better for passing in dependencies where needed?
 	 */
-	#initialize() {
+	async #initialize() {
+		// Clerk expects document when importing, so we have to defere the import to here.
+		// This means that calling any function of the AuthenticationService has to happen after ir or after onMount(), otherwise it will fail.
+		if (!this.#Clerk) {
+			this.#Clerk = (await import('@clerk/clerk-js')).default;
+		}
+		if (!this.#clerk) {
+			this.#clerk = new this.#Clerk(this.#CLERK_FRONTEND_API);
+		}
 		if (this.#clerk.isReady()) {
 			return Promise.resolve(this.#clerk);
 		} else {
-			return this.#clerk.load().then((instance) => {
-				this.#clerk = instance;
-				return instance;
-			});
+			await this.#clerk.load();
+			return this.#clerk;
 		}
 	}
 

@@ -5,7 +5,7 @@ export default class AbstractCrashService {
 		}
 	}
 
-	captureException() {
+	async captureException() {
 		throw new Error("Method 'captureException()' must be implemented.");
 	}
 }

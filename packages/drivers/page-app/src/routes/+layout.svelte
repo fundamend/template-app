@@ -1,13 +1,53 @@
 <script>
-	import { onMount } from 'svelte';
-	import * as Sentry from '@sentry/browser';
-	import { BrowserTracing } from '@sentry/tracing';
-	import { base, assets } from '$app/paths';
+	/* global __APP_VERSION__ */
+	import { onMount, setContext } from 'svelte';
+	import { base } from '$app/paths';
 
-	const sentryDSN = import.meta.env.PUBLIC_SENTRY_DSN;
-	const environment = import.meta.env.PUBLIC_ENVIRONMENT;
-	const version = __APP_VERSION__;
-	let authenticationService;
+	import AuthenticationService from '@template-app/service-authentication-clerk';
+	import CrashService from '@template-app/service-crash-sentry-browser';
+	import DependencyContainer from '@template-app/service-dependency-container-awilix';
+
+	const dependencyContainer = new DependencyContainer();
+
+	dependencyContainer.register([
+		// values
+		{
+			type: 'value',
+			name: 'CLERK_FRONTEND_API',
+			value: import.meta.env.PUBLIC_CLERK_FRONTEND_API
+		},
+		{
+			type: 'value',
+			name: 'ENVIRONMENT',
+			value: import.meta.env.PUBLIC_ENVIRONMENT
+		},
+		{
+			type: 'value',
+			name: 'SENTRY_DSN',
+			value: import.meta.env.PUBLIC_SENTRY_DSN
+		},
+		{
+			type: 'value',
+			name: 'SENTRY_TRACE_SAMPLE_RATE',
+			value: import.meta.env.PUBLIC_SENTRY_TRACE_SAMPLE_RATE
+		},
+		{ type: 'value', name: 'VERSION', value: __APP_VERSION__ },
+		// classes
+		{
+			type: 'class',
+			name: 'AuthenticationService',
+			value: AuthenticationService,
+			singleton: true
+		},
+		{
+			type: 'class',
+			name: 'CrashService',
+			value: CrashService,
+			singleton: true
+		}
+	]);
+
+	setContext('dependencyContainer', dependencyContainer);
 
 	const dropdown = [
 		{
@@ -25,27 +65,22 @@
 		}
 	];
 
-	if (!environment === 'development') {
-		Sentry.init({
-			dsn: sentryDSN,
-			environment: environment,
-			release: version,
-			integrations: [new BrowserTracing()],
-			tracesSampleRate: 1.0
-		});
-	}
-
 	let isLoggedInPromise;
 
 	onMount(async () => {
 		await import('@fundamend/components-layout');
 		await import('@fundamend/css');
-		const AuthenticationService = await import(
-			'@template-app/service-authentication-clerk'
-		).default;
-		authenticationService = new AuthenticationService({
-			clerkFrontendApi: import.meta.env.PUBLIC_CLERK_FRONTEND_API
-		});
+
+		const environment = await dependencyContainer.resolve('ENVIRONMENT');
+
+		if (environment !== 'development') {
+			await dependencyContainer.resolve('CrashService');
+		}
+
+		const authenticationService = await dependencyContainer.resolve(
+			'AuthenticationService'
+		);
+
 		isLoggedInPromise = authenticationService.isLoggedIn();
 	});
 </script>

@@ -6,6 +6,10 @@ module.exports = {
 				patterns: [
 					// disallow all imports
 					'*',
+					// allow imports of svelte
+					'!svelte',
+					'!$app',
+					'!$app/*',
 					// allow imports of services, use cases, and entities
 					'!@template-app',
 					'@template-app/*',
@@ -15,7 +19,11 @@ module.exports = {
 					// allow self-referencing imports of package.json
 					'!@template-app/*/',
 					'@template-app/*/*',
-					'!@template-app/*/package.json'
+					'!@template-app/*/package.json',
+					// allow self-referencing imports of src files like layouts layouts
+					'!@template-app/*/src',
+					'!@template-app/*/src/*',
+					'!@template-app/*/src/*/*'
 				]
 			}
 		]

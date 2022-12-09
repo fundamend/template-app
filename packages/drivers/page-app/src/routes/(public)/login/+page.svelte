@@ -1,15 +1,12 @@
 <script>
-	import { onMount } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 
-	let authenticationService;
+	const dependencyContainer = getContext('dependencyContainer');
 
 	onMount(async () => {
-		const AuthenticationService = await import(
-			'@template-app/service-authentication-clerk'
-		).default;
-		authenticationService = new AuthenticationService({
-			clerkFrontendApi: import.meta.env.PUBLIC_CLERK_FRONTEND_API
-		});
+		const authenticationService = await dependencyContainer.resolve(
+			'AuthenticationService'
+		);
 		await authenticationService.logIn();
 	});
 </script>

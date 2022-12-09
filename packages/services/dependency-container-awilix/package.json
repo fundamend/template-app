@@ -1,0 +1,15 @@
+{
+	"name": "@template-app/service-dependency-container-awilix",
+	"version": "0.0.0",
+	"dependencies": {
+		"@template-app/abstract-service-dependency-container": "0.0.0",
+		"awilix": "^8.0.0"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

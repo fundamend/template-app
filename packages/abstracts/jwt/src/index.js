@@ -5,11 +5,11 @@ export default class AbstractJWTService {
 		}
 	}
 
-	verify() {
+	async verify() {
 		throw new Error("Method 'verify()' must be implemented.");
 	}
 
-	decode() {
+	async decode() {
 		throw new Error("Method 'decode()' must be implemented.");
 	}
 }

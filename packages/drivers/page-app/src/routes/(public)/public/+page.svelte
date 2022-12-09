@@ -7,7 +7,7 @@
 		if (response.ok) {
 			return response.json();
 		} else {
-			throw new Error(test);
+			throw new Error('test');
 		}
 	}
 
