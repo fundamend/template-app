@@ -11,16 +11,16 @@ addEventListener('fetch', (event) => {
 		try {
 			callUndefinedFunction();
 		} catch (error) {
-			if (environment != 'development') {
+			if (environment !== 'development') {
 				if (!crashService) {
 					crashService = new CrashService({
-						dsn: PUBLIC_SENTRY_DSN,
 						context: event,
-						environment: environment,
-						release: version
+						ENVIRONMENT: environment,
+						SENTRY_DSN: PUBLIC_SENTRY_DSN,
+						VERSION: version
 					});
 				}
-				crashService.captureException(error);
+				await crashService.captureException(error);
 				return new Response(JSON.stringify({ received: true }), {
 					headers: { 'Content-type': 'application/json' }
 				});

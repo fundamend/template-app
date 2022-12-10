@@ -5,15 +5,15 @@ const reportCrash = async (context) => {
 	try {
 		return await context.next();
 	} catch (error) {
-		if (context.env.PUBLIC_ENVIRONMENT != 'development') {
+		if (context.env.PUBLIC_ENVIRONMENT !== 'development') {
 			const crashService = new CrashService({
 				context: context,
-				dsn: context.env.PUBLIC_SENTRY_DSN,
-				environment: context.env.PUBLIC_ENVIRONMENT,
-				release: version
+				SENTRY_DSN: context.env.PUBLIC_SENTRY_DSN,
+				ENVIRONMENT: context.env.PUBLIC_ENVIRONMENT,
+				VERSION: version
 			});
-			crashService.captureException(error);
-			return new Response('Something went wrong', {
+			await crashService.captureException(error);
+			return new Response('Something went wrong' + error, {
 				status: 500,
 				statusText: 'Internal Server Error'
 			});

@@ -17,16 +17,16 @@ addEventListener('fetch', (event) => {
 				headers: { 'Content-type': 'application/json' }
 			});
 		} catch (error) {
-			if (environment != 'development') {
+			if (environment !== 'development') {
 				if (!crashService) {
 					crashService = new CrashService({
-						dsn: PUBLIC_SENTRY_DSN,
 						context: event,
-						environment: environment,
-						release: version
+						ENVIRONMENT: environment,
+						SENTRY_DSN: PUBLIC_SENTRY_DSN,
+						VERSION: version
 					});
 				}
-				crashService.captureException(error);
+				await crashService.captureException(error);
 				return new Response('Something went wrong', {
 					status: 500,
 					statusText: 'Internal Server Error'
