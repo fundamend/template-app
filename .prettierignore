@@ -3,4 +3,7 @@
 build
 node_modules
 .*ignore
+*.feature
+*.lock
 *.log
+

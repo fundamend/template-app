@@ -1,0 +1,17 @@
+{
+	"name": "@template-app/service-storage-orbit",
+	"version": "0.0.0",
+	"dependencies": {
+		"@orbit/coordinator": "^0.17.0",
+		"@orbit/indexeddb": "^0.17.2",
+		"@orbit/memory": "^0.17.2",
+		"@template-app/abstract-service-storage": "0.0.0"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

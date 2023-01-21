@@ -1,12 +1,21 @@
-/*
- ** Allow no dependencies for all entities
- */
 module.exports = {
 	rules: {
 		'no-restricted-imports': [
 			'error',
 			{
-				patterns: ['**/../*', '*']
+				patterns: [
+					// disallow all imports
+					'*',
+					// disallow relative imports
+					'**/../*',
+					// allow self-referencing imports of src files
+					'!@template-app',
+					'@template-app/*',
+					'!@template-app/entities',
+					'@template-app/entities/*',
+					'!@template-app/entities/src',
+					'!@template-app/entities/src/*'
+				]
 			}
 		]
 	},

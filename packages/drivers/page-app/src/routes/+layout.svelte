@@ -6,6 +6,15 @@
 	import AuthenticationService from '@template-app/service-authentication-clerk';
 	import CrashService from '@template-app/service-crash-sentry-browser';
 	import DependencyContainer from '@template-app/service-dependency-container-awilix';
+	import StorageService from '@template-app/service-storage-orbit';
+
+	import { makeCreateDimension } from '@template-app/use-cases';
+	import { makeReadDimension } from '@template-app/use-cases';
+	import { makeUpdateDimension } from '@template-app/use-cases';
+	import { makeDeleteDimension } from '@template-app/use-cases';
+	import { makeListDimensions } from '@template-app/use-cases';
+	import { makeSubscribeDimensions } from '@template-app/use-cases';
+	import ORBIT_SCHEMA from '@template-app/shared-schema-orbit';
 
 	const dependencyContainer = new DependencyContainer();
 
@@ -32,6 +41,11 @@
 			value: import.meta.env.PUBLIC_SENTRY_TRACE_SAMPLE_RATE
 		},
 		{ type: 'value', name: 'VERSION', value: __APP_VERSION__ },
+		{
+			type: 'value',
+			name: 'ORBIT_SCHEMA',
+			value: ORBIT_SCHEMA
+		},
 		// classes
 		{
 			type: 'class',
@@ -44,6 +58,43 @@
 			name: 'CrashService',
 			value: CrashService,
 			singleton: true
+		},
+		{
+			type: 'class',
+			name: 'StorageService',
+			value: StorageService,
+			singleton: true
+		},
+		// functions
+		{
+			type: 'function',
+			name: 'createDimension',
+			value: makeCreateDimension
+		},
+		{
+			type: 'function',
+			name: 'readDimension',
+			value: makeReadDimension
+		},
+		{
+			type: 'function',
+			name: 'updateDimension',
+			value: makeUpdateDimension
+		},
+		{
+			type: 'function',
+			name: 'deleteDimension',
+			value: makeDeleteDimension
+		},
+		{
+			type: 'function',
+			name: 'listDimensions',
+			value: makeListDimensions
+		},
+		{
+			type: 'function',
+			name: 'subscribeDimensions',
+			value: makeSubscribeDimensions
 		}
 	]);
 
@@ -96,6 +147,7 @@
 				{#await isLoggedInPromise then isLoggedIn}
 					{#if isLoggedIn}
 						<a href="{base}/private">Private</a>
+						<a href="{base}/dimensions">Dimensions</a>
 					{/if}
 				{/await}
 			</fundamend-cluster>

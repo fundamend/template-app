@@ -1,0 +1,27 @@
+{
+	"name": "@template-app/use-cases",
+	"version": "0.0.0",
+	"devDependencies": {
+		"@template-app/abstract-service-storage": "^0.0.0",
+		"@template-app/entities": "^0.0.0",
+		"rimraf": "^3.0.2"
+	},
+	"exports": {
+		".": "./src/index.js",
+		"./src/createDimension.js": "./src/createDimension.js",
+		"./src/createMeasure.js": "./src/createMeasure.js",
+		"./src/createMilestone.js": "./src/createMilestone.js",
+		"./src/readDimension.js": "./src/readDimension.js",
+		"./src/updateDimension.js": "./src/updateDimension.js",
+		"./src/deleteDimension.js": "./src/deleteDimension.js",
+		"./src/listDimensions.js": "./src/listDimensions.js",
+		"./src/subscribeDimensions.js": "./src/subscribeDimensions.js"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

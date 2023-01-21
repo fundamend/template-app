@@ -1,0 +1,21 @@
+{
+	"name": "@template-app/entities",
+	"version": "0.0.0",
+	"devDependencies": {
+		"rimraf": "^3.0.2"
+	},
+	"exports": {
+		".": "./src/index.js",
+		"./src/base.js": "./src/base.js",
+		"./src/dimension.js": "./src/dimension.js",
+		"./src/measure.js": "./src/measure.js",
+		"./src/milestone.js": "./src/milestone.js"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"clean": "rimraf *.log",
+		"clean:all": "yarn clean && rimraf node_modules"
+	},
+	"type": "module"
+}

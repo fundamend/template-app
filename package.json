@@ -18,10 +18,13 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"lerna": "^6.0.3",
 		"lint-staged": "^12.1.2",
+		"madge": "^5.0.1",
 		"prettier": "^2.7.1",
+		"prettier-plugin-astro": "^0.7.2",
 		"prettier-plugin-svelte": "^2.8.0",
 		"remark-cli": "^10.0.0",
 		"rimraf": "^3.0.2",
+		"sinon": "^15.0.1",
 		"stylelint": "^13.13.1",
 		"vitest": "^0.25.3"
 	},
@@ -30,6 +33,7 @@
 	"scripts": {
 		"clean": "lerna run clean && rimraf *.log",
 		"clean:all": "lerna run clean:all && yarn clean && rimraf node_modules",
+		"graph": "madge --image graph.png packages/drivers",
 		"lint": "yarn lint:js && yarn lint:css && yarn lint:md && yarn lint:formatting",
 		"lint:css": "stylelint **/*.css --allow-empty-input --ignore-path .gitignore",
 		"lint:css:fix": "stylelint **/*.css --allow-empty-input --ignore-path .gitignore --fix",
@@ -43,9 +47,9 @@
 		"precommit": "lint-staged",
 		"prod": "lerna run prod",
 		"release:prepare": "cross-env-shell \"standard-version -t $npm_package_name@\"",
-		"test": "yarn test:unit && yarn test:behaviour",
-		"test:unit": "vitest --run",
-		"test:behaviour": "cucumber-js"
+		"test": "yarn test:unit && yarn test:behavior",
+		"test:behavior": "cucumber-js",
+		"test:unit": "vitest --run"
 	},
 	"type": "module",
 	"workspaces": [

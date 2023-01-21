@@ -6,16 +6,22 @@ module.exports = {
 				patterns: [
 					// disallow all imports
 					'*',
-					// allow imports of svelte
+					// disallow relative imports
+					'**/../*',
+					// allow imports of svelte files
 					'!svelte',
 					'!$app',
 					'!$app/*',
-					// allow imports of services, use cases, and entities
+					'!$lib',
+					'!$lib/*',
+					'!$lib/*/*',
+					// allow imports of services, shared, use cases, and entities
 					'!@template-app',
 					'@template-app/*',
-					'!@template-app/service-*',
-					'!@template-app/use-case-*',
 					'!@template-app/entity-*',
+					'!@template-app/service-*',
+					'!@template-app/shared-*',
+					'!@template-app/use-cases',
 					// allow self-referencing imports of package.json
 					'!@template-app/*/',
 					'@template-app/*/*',

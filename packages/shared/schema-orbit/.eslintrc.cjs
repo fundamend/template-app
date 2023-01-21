@@ -4,8 +4,8 @@ module.exports = {
 			'error',
 			{
 				patterns: [
-					// disallow all imports
-					'*'
+					// disallow relative imports
+					'**/../*'
 				]
 			}
 		]

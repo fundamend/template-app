@@ -7,17 +7,21 @@
 		"@fundamend/css-theme-playful": "^0.0.1",
 		"@template-app/service-authentication-clerk": "^0.0.0",
 		"@template-app/service-cookie": "^0.0.0",
-		"@template-app/service-dependency-container-awilix": "^0.0.0",
 		"@template-app/service-crash-sentry": "^0.0.0",
 		"@template-app/service-crash-sentry-browser": "^0.0.0",
-		"@template-app/service-jwt": "^0.0.0"
+		"@template-app/service-dependency-container-awilix": "^0.0.0",
+		"@template-app/service-jwt": "^0.0.0",
+		"@template-app/service-storage-orbit": "^0.0.0",
+		"@template-app/shared-schema-orbit": "^0.0.0",
+		"@template-app/use-cases": "^0.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^1.0.0-next.48",
-		"@sveltejs/kit": "^1.0.0-next.535",
-		"svelte": "^3.52.0",
-		"vite": "^3.2.2",
-		"wrangler": "^2.1.13"
+		"@sveltejs/adapter-static": "^1.0.0-next.49",
+		"@sveltejs/kit": "^1.0.0-next.582",
+		"rimraf": "^3.0.2",
+		"svelte": "^3.54.0",
+		"vite": "^4.0.0",
+		"wrangler": "^2.6.2"
 	},
 	"license": "MIT",
 	"main": "src/app.html",

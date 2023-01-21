@@ -1,5 +1,5 @@
 {
-	"name": "@template-app/entity-test",
+	"name": "@template-app/abstract-service-storage",
 	"version": "0.0.0",
 	"license": "MIT",
 	"main": "src/index.js",

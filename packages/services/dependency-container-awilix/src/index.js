@@ -1,5 +1,5 @@
 import AbstractDependencyContainerService from '@template-app/abstract-service-dependency-container';
-import { createContainer, asValue, asClass } from 'awilix';
+import { createContainer, asValue, asClass, asFunction } from 'awilix';
 
 export default class DependencyContainerService extends AbstractDependencyContainerService {
 	#container;
@@ -23,6 +23,9 @@ export default class DependencyContainerService extends AbstractDependencyContai
 						this.#registerClass(entity.name, entity.value);
 					}
 					break;
+				case 'function':
+					this.#registerFunction(entity.name, entity.value);
+					break;
 				default:
 					throw new Error(
 						`Don't know how to register '${entity.type}' with name '${entity.name}'`
@@ -45,5 +48,9 @@ export default class DependencyContainerService extends AbstractDependencyContai
 
 	#registerSingletonClass(name, value) {
 		this.#container.register({ [name]: asClass(value).singleton() });
+	}
+
+	#registerFunction(name, value) {
+		this.#container.register({ [name]: asFunction(value) });
 	}
 }
