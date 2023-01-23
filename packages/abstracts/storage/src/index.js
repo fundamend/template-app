@@ -29,6 +29,10 @@ export default class AbstractStorageService {
 		throw new Error("Method 'subscribe()' must be implemented.");
 	}
 
+	async find() {
+		throw new Error("Method 'find()' must be implemented.");
+	}
+
 	async import() {
 		throw new Error("Method 'import()' must be implemented.");
 	}

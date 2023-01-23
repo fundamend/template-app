@@ -14,6 +14,7 @@
 	import { makeDeleteDimension } from '@template-app/use-cases';
 	import { makeListDimensions } from '@template-app/use-cases';
 	import { makeSubscribeDimensions } from '@template-app/use-cases';
+	import { makeFindDimensions } from '@template-app/use-cases';
 	import ORBIT_SCHEMA from '@template-app/shared-schema-orbit';
 
 	const dependencyContainer = new DependencyContainer();
@@ -95,6 +96,11 @@
 			type: 'function',
 			name: 'subscribeDimensions',
 			value: makeSubscribeDimensions
+		},
+		{
+			type: 'function',
+			name: 'findDimensions',
+			value: makeFindDimensions
 		}
 	]);
 

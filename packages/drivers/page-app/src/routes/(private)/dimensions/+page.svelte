@@ -1,6 +1,6 @@
 <script>
 	import { getContext, onMount } from 'svelte';
-	import Dimension from '$lib/components/Dimension.svelte';
+	import DimensionCard from '$lib/components/DimensionCard.svelte';
 
 	const dependencyContainer = getContext('dependencyContainer');
 	let createDimension;
@@ -27,7 +27,7 @@
 		<h1>Dimensions</h1>
 		<button on:click={handleCreate}>+</button>
 		{#each dimensions as dimension}
-			<Dimension {dimension} />
+			<DimensionCard {dimension} />
 		{/each}
 	</fundamend-center>
 </fundamend-box>

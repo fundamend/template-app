@@ -93,6 +93,15 @@ export default class StorageService extends AbstractStorageService {
 		});
 	}
 
+	async find(type, query) {
+		const memory = await this.#initialize();
+		const filter = query.map((q) => this.#mapToFilter(q)) || [];
+		const results = await memory.query((q) =>
+			q.findRecords(type).filter(...filter)
+		);
+		return this.#mapToObject(results);
+	}
+
 	async import() {
 		// TODO
 	}
@@ -114,5 +123,28 @@ export default class StorageService extends AbstractStorageService {
 		return records.map((record) => {
 			return { id: record.id, ...record.attributes };
 		});
+	};
+
+	// map from query array to orbitjs filter
+	#mapToFilter = (query) => {
+		let operation;
+		switch (query[1]) {
+			case '==':
+				operation = 'equal';
+				break;
+			case '<':
+				operation = 'lt';
+				break;
+			case '>':
+				operation = 'gt';
+				break;
+			case '<=':
+				operation = 'lte';
+				break;
+			case '>=':
+				operation = 'gte';
+				break;
+		}
+		return { attribute: query[0], op: operation, value: query[2] };
 	};
 }
