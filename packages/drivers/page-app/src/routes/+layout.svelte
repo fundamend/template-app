@@ -9,6 +9,7 @@
 	import StorageService from '@template-app/service-storage-orbit';
 
 	import { makeCreateDimension } from '@template-app/use-cases';
+	import { makeCreateMeasure } from '@template-app/use-cases';
 	import { makeReadDimension } from '@template-app/use-cases';
 	import { makeUpdateDimension } from '@template-app/use-cases';
 	import { makeDeleteDimension } from '@template-app/use-cases';
@@ -71,6 +72,11 @@
 			type: 'function',
 			name: 'createDimension',
 			value: makeCreateDimension
+		},
+		{
+			type: 'function',
+			name: 'createMeasure',
+			value: makeCreateMeasure
 		},
 		{
 			type: 'function',

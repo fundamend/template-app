@@ -33,4 +33,17 @@ export class Measure extends Base {
 	set timestamp(timestamp) {
 		this.#timestamp = new Date(timestamp).toISOString();
 	}
+
+	fromObject(object) {
+		return Object.assign(this, object);
+	}
+
+	toJSON() {
+		return {
+			id: this.id,
+			value: this.value,
+			dimension: this.dimension,
+			timestamp: this.timestamp
+		};
+	}
 }

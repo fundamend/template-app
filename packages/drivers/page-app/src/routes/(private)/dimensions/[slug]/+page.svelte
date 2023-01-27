@@ -2,6 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import MeasureList from '../../../../lib/components/MeasureList.svelte';
 
 	const dependencyContainer = getContext('dependencyContainer');
 
@@ -40,5 +41,6 @@
 		<input type="text" placeholder="Enter a name" bind:value={dimension.name} />
 		<button on:click={handleSave}>Save</button>
 		<button on:click={handleDelete}>X</button>
+		<MeasureList dimension={dimension.id} />
 	{/if}
 {/await}

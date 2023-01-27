@@ -1,4 +1,5 @@
 export * from '@template-app/use-cases/src/createDimension.js';
+export * from '@template-app/use-cases/src/createMeasure.js';
 export * from '@template-app/use-cases/src/deleteDimension.js';
 export * from '@template-app/use-cases/src/listDimensions.js';
 export * from '@template-app/use-cases/src/readDimension.js';
