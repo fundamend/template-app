@@ -53,6 +53,17 @@ export default class StorageService extends AbstractStorageService {
 		return mappedEntity.id;
 	}
 
+	async relate(entityFrom, type, entityTo) {
+		const memory = await this.#initialize();
+		await memory.update((t) =>
+			t.addToRelatedRecords(
+				{ id: entityFrom.id, type: entityFrom.type },
+				type,
+				{ id: entityTo.id, type: entityTo.type }
+			)
+		);
+	}
+
 	async read(type, id) {
 		const memory = await this.#initialize();
 		const result = await memory.query((q) =>
@@ -100,6 +111,36 @@ export default class StorageService extends AbstractStorageService {
 			q.findRecords(type).filter(...filter)
 		);
 		return this.#mapToObject(results);
+	}
+
+	async findRelated(type, id, relatedType, query) {
+		const memory = await this.#initialize();
+		const filter = query.map((q) => this.#mapToFilter(q)) || [];
+		const results = await memory.query((q) =>
+			q
+				.findRelatedRecords({ id: id, type: type }, relatedType)
+				.filter(...filter)
+		);
+		console.log(results);
+		return this.#mapToObject(results);
+	}
+
+	async subscribeRelated(type, id, relatedType, query, callback) {
+		const memory = await this.#initialize();
+		const filter = query.map((q) => this.#mapToFilter(q)) || [];
+
+		// return instant results
+		callback(await this.findRelated(type, id, relatedType, query));
+
+		const liveQuery = memory.cache.liveQuery((q) =>
+			q
+				.findRelatedRecords({ id: id, type: type }, relatedType)
+				.filter(...filter)
+		);
+		liveQuery.subscribe(async (update) => {
+			const results = await update.query();
+			callback(this.#mapToObject(results));
+		});
 	}
 
 	async import() {

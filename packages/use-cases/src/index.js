@@ -6,3 +6,5 @@ export * from '@template-app/use-cases/src/readDimension.js';
 export * from '@template-app/use-cases/src/subscribeDimensions.js';
 export * from '@template-app/use-cases/src/updateDimension.js';
 export * from '@template-app/use-cases/src/findDimensions.js';
+export * from '@template-app/use-cases/src/findRelatedMeasures.js';
+export * from '@template-app/use-cases/src/subscribeRelatedMeasures.js';

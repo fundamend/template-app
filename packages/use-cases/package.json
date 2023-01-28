@@ -15,7 +15,9 @@
 		"./src/deleteDimension.js": "./src/deleteDimension.js",
 		"./src/listDimensions.js": "./src/listDimensions.js",
 		"./src/subscribeDimensions.js": "./src/subscribeDimensions.js",
-		"./src/findDimensions.js": "./src/findDimensions.js"
+		"./src/findDimensions.js": "./src/findDimensions.js",
+		"./src/findRelatedMeasures.js": "./src/findRelatedMeasures.js",
+		"./src/subscribeRelatedMeasures.js": "./src/subscribeRelatedMeasures.js"
 	},
 	"license": "MIT",
 	"main": "src/index.js",

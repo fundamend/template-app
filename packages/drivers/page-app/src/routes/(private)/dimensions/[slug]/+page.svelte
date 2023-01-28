@@ -2,7 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import MeasureList from '../../../../lib/components/MeasureList.svelte';
+	import MeasureList from '$lib/components/MeasureList.svelte';
 
 	const dependencyContainer = getContext('dependencyContainer');
 
