@@ -1,5 +1,6 @@
 <script>
 	import { getContext, onMount } from 'svelte';
+	import MeasureListElement from '$lib/components/MeasureListElement.svelte';
 
 	export let dimension;
 	const dependencyContainer = getContext('dependencyContainer');
@@ -37,5 +38,5 @@
 <button on:click={handleCreate}>+</button>
 
 {#each measures as measure}
-	<p>{measure.value}</p>
+	<MeasureListElement {measure} />
 {/each}

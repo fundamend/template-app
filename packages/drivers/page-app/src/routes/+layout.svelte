@@ -13,6 +13,7 @@
 	import { makeReadDimension } from '@template-app/use-cases';
 	import { makeUpdateDimension } from '@template-app/use-cases';
 	import { makeDeleteDimension } from '@template-app/use-cases';
+	import { makeDeleteMeasure } from '@template-app/use-cases';
 	import { makeListDimensions } from '@template-app/use-cases';
 	import { makeSubscribeDimensions } from '@template-app/use-cases';
 	import { makeFindDimensions } from '@template-app/use-cases';
@@ -94,6 +95,11 @@
 			type: 'function',
 			name: 'deleteDimension',
 			value: makeDeleteDimension
+		},
+		{
+			type: 'function',
+			name: 'deleteMeasure',
+			value: makeDeleteMeasure
 		},
 		{
 			type: 'function',

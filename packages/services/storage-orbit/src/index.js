@@ -121,7 +121,6 @@ export default class StorageService extends AbstractStorageService {
 				.findRelatedRecords({ id: id, type: type }, relatedType)
 				.filter(...filter)
 		);
-		console.log(results);
 		return this.#mapToObject(results);
 	}
 

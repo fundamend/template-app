@@ -13,6 +13,7 @@
 		"./src/readDimension.js": "./src/readDimension.js",
 		"./src/updateDimension.js": "./src/updateDimension.js",
 		"./src/deleteDimension.js": "./src/deleteDimension.js",
+		"./src/deleteMeasure.js": "./src/deleteMeasure.js",
 		"./src/listDimensions.js": "./src/listDimensions.js",
 		"./src/subscribeDimensions.js": "./src/subscribeDimensions.js",
 		"./src/findDimensions.js": "./src/findDimensions.js",
