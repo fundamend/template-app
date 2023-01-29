@@ -37,6 +37,8 @@
 <h2>Measures</h2>
 <button on:click={handleCreate}>+</button>
 
-{#each measures as measure}
-	<MeasureListElement {measure} />
-{/each}
+{#if measures}
+	{#each measures as measure}
+		<MeasureListElement {measure} />
+	{/each}
+{/if}

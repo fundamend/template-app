@@ -152,7 +152,7 @@ export default class StorageService extends AbstractStorageService {
 
 	// map from plain js objects to orbitjs record objects
 	#mapFromObject = (type, objects) => {
-		return objects.map((object) => {
+		return objects?.map((object) => {
 			const { id, ...attributes } = object;
 			return { id: id, type: type, attributes: attributes };
 		});
@@ -160,7 +160,7 @@ export default class StorageService extends AbstractStorageService {
 
 	// map from orbitjs record objects to plain js objects
 	#mapToObject = (records) => {
-		return records.map((record) => {
+		return records?.map((record) => {
 			return { id: record.id, ...record.attributes };
 		});
 	};

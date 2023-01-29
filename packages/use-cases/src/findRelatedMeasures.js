@@ -8,7 +8,7 @@ export const makeFindRelatedMeasures = ({ StorageService }) => {
 			'measures',
 			query
 		);
-		return stored.map((s) => {
+		return stored?.map((s) => {
 			const measure = new Measure();
 			return measure.fromObject(s);
 		});

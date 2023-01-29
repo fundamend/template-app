@@ -15,4 +15,6 @@
 	});
 </script>
 
-<p>{measure.value} <button on:click={handleClick}>X</button></p>
+{#if measure}
+	<p>{measure.value} <button on:click={handleClick}>X</button></p>
+{/if}

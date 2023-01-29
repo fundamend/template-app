@@ -8,7 +8,7 @@ export const makeSubscribeRelatedMeasures = ({ StorageService }) => {
 			'measures',
 			query,
 			(results) => {
-				const mappedResults = results.map((result) => {
+				const mappedResults = results?.map((result) => {
 					const measure = new Measure();
 					return measure.fromObject(result);
 				});
