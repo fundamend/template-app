@@ -3,7 +3,7 @@
 </script>
 
 {#if dimension}
-	<a href="/dimensions/{dimension.name}">
+	<a href={`/dimension?name=${dimension.name}`}>
 		<h2>{dimension.name}</h2>
 	</a>
 {/if}

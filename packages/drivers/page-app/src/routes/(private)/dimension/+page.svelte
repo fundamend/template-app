@@ -1,7 +1,7 @@
 <script>
 	import { getContext, onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import DimensionDetails from '$lib/components/DimensionDetails.svelte';
 
 	const dependencyContainer = getContext('dependencyContainer');
@@ -19,10 +19,12 @@
 
 		// TODO: maybe there is a better way to do this
 		dimensionPromise = new Promise((resolve) => {
-			findDimensions([['name', '==', $page.params.slug]]).then((result) => {
-				dimension = result[0];
-				resolve();
-			});
+			findDimensions([['name', '==', $page.url.searchParams.get('name')]]).then(
+				(result) => {
+					dimension = result[0];
+					resolve();
+				}
+			);
 		});
 	});
 </script>
