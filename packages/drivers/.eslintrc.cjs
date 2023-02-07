@@ -15,11 +15,14 @@ module.exports = {
 					'!$lib',
 					'!$lib/*',
 					'!$lib/*/*',
-					// allow imports of services, shared, use cases, and entities
+					// allow imports of services
+					'!@fundamend',
+					'@fundamend/*',
+					'!@fundamend/service-*',
+					// allow imports of entities, shared, and use cases
 					'!@template-app',
 					'@template-app/*',
 					'!@template-app/entity-*',
-					'!@template-app/service-*',
 					'!@template-app/shared-*',
 					'!@template-app/use-cases',
 					// allow self-referencing imports of package.json

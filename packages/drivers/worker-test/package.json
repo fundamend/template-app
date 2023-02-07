@@ -2,7 +2,7 @@
 	"name": "@template-app/worker-test",
 	"version": "0.0.0",
 	"dependencies": {
-		"@template-app/service-crash-sentry": "^0.0.0"
+		"@fundamend/service-crash-sentry": "^0.0.0"
 	},
 	"devDependencies": {
 		"rimraf": "^3.0.2",

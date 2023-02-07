@@ -1,5 +1,5 @@
-import CookieService from '@template-app/service-cookie';
-import JWTService from '@template-app/service-jwt';
+import CookieService from '@fundamend/service-cookie';
+import JWTService from '@fundamend/service-jwt';
 
 const validateJWT = async ({ request, next, env }) => {
 	const cookieService = new CookieService();

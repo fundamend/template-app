@@ -1,6 +1,6 @@
 /* global callUndefinedFunction, PUBLIC_ENVIRONMENT, PUBLIC_SENTRY_DSN */
 
-import CrashService from '@template-app/service-crash-sentry';
+import CrashService from '@fundamend/service-crash-sentry';
 import { version } from '@template-app/worker-test/package.json';
 
 addEventListener('fetch', (event) => {

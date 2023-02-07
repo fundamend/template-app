@@ -2,7 +2,7 @@
 	"name": "@template-app/use-cases",
 	"version": "0.0.0",
 	"devDependencies": {
-		"@template-app/abstract-service-storage": "^0.0.0",
+		"@fundamend/service-storage-abstract": "^0.0.0",
 		"@template-app/entities": "^0.0.0",
 		"rimraf": "^3.0.2"
 	},

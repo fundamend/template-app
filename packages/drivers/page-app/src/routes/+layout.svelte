@@ -3,10 +3,10 @@
 	import { onMount, setContext } from 'svelte';
 	import { base } from '$app/paths';
 
-	import AuthenticationService from '@template-app/service-authentication-clerk';
-	import CrashService from '@template-app/service-crash-sentry-browser';
-	import DependencyContainer from '@template-app/service-dependency-container-awilix';
-	import StorageService from '@template-app/service-storage-orbit';
+	import AuthenticationService from '@fundamend/service-authentication-clerk';
+	import CrashService from '@fundamend/service-crash-sentry-browser';
+	import DependencyContainer from '@fundamend/service-dependency-container-awilix';
+	import StorageService from '@fundamend/service-storage-orbit';
 
 	import { makeCreateDimension } from '@template-app/use-cases';
 	import { makeCreateMeasure } from '@template-app/use-cases';

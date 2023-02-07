@@ -1,4 +1,4 @@
-import CrashService from '@template-app/service-crash-sentry';
+import CrashService from '@fundamend/service-crash-sentry';
 import { version } from '@template-app/page-app/package.json';
 
 const reportCrash = async (context) => {

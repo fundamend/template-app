@@ -1,5 +1,5 @@
 import { expect, describe, test } from 'vitest';
-import AbstractStorageService from '@template-app/abstract-service-storage-local';
+import AbstractStorageService from '@fundamend/service-storage-abstract';
 import { makeCreateDimension } from '@template-app/use-cases';
 
 class MockStorageService extends AbstractStorageService {
