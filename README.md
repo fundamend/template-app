@@ -64,9 +64,15 @@ TODO: Add eslint astro plugin
 
 ## Testing
 
+Two kinds of testing are used in this repository.
+Behavior testing is used everywhere where the business is interested.
+In this case, this includes page-\* drivers, entities, and use cases.
+These end-to-end tests are implemented with cucumberjs and playwright.
+All other packages, i.e., worker-\* drivers and shared packages, are tested with unit tests.
+They are implemented with vitest.
 See <https://cucumber.io/blog/bdd/where_should_you_use_bdd/>
-\-> BDD (Cucumber everywhere where the business is interested -> entities and use-cases, and end-to-end testincluding UI)
-\-> Unit Tests (Vitest) everywhere else (adapters, integration tests between layers)
+
+## Issues
 
 Want to use expect from vitest, but get error: TypeError: Cannot read properties of undefined (reading 'config')
 If resolved, chai can be replaced with vitest when importing expect

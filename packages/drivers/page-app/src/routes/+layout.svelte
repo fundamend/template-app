@@ -1,5 +1,4 @@
 <script>
-	/* global __APP_VERSION__ */
 	import { onMount, setContext } from 'svelte';
 	import { base } from '$app/paths';
 
@@ -19,7 +18,7 @@
 	import { makeFindDimensions } from '@template-app/use-cases';
 	import { makeFindRelatedMeasures } from '@template-app/use-cases';
 	import { makeSubscribeRelatedMeasures } from '@template-app/use-cases';
-	import ORBIT_SCHEMA from '@template-app/shared-schema-orbit';
+	import { SchemaOrbit } from '@template-app/shared';
 
 	const dependencyContainer = new DependencyContainer();
 
@@ -45,11 +44,11 @@
 			name: 'SENTRY_TRACE_SAMPLE_RATE',
 			value: import.meta.env.PUBLIC_SENTRY_TRACE_SAMPLE_RATE
 		},
-		{ type: 'value', name: 'VERSION', value: __APP_VERSION__ },
+		{ type: 'value', name: 'VERSION', value: __APP_VERSION__ }, // eslint-disable-line no-undef
 		{
 			type: 'value',
 			name: 'ORBIT_SCHEMA',
-			value: ORBIT_SCHEMA
+			value: SchemaOrbit
 		},
 		// classes
 		{
@@ -170,7 +169,7 @@
 	<fundamend-box class="width:100">
 		<fundamend-stack x class="width:100">
 			<fundamend-cluster start>
-				<a href="{base}/">Home</a>
+				<a href="{base}/" id="logo">Home</a>
 			</fundamend-cluster>
 			<fundamend-cluster center>
 				<a href="{base}/public">Public</a>

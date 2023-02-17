@@ -7,7 +7,11 @@ addEventListener('fetch', (event) => {
 	const environment = PUBLIC_ENVIRONMENT;
 	let crashService;
 
-	async function handleRequest() {
+	async function handleRequest(request) {
+		if (request.method === 'HEAD') {
+			return new Response(null, { status: 200 });
+		}
+
 		try {
 			callUndefinedFunction();
 		} catch (error) {

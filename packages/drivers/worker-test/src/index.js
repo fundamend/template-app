@@ -8,6 +8,10 @@ addEventListener('fetch', (event) => {
 	let crashService;
 
 	async function handleRequest(request) {
+		if (request.method === 'HEAD') {
+			return new Response(null, { status: 200 });
+		}
+
 		try {
 			const body = await request.json();
 			if (body.fail) {

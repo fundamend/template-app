@@ -1,6 +1,6 @@
 import { RecordSchema } from '@orbit/records';
 
-export default new RecordSchema({
+export const SchemaOrbit = new RecordSchema({
 	models: {
 		dimension: {
 			attributes: {

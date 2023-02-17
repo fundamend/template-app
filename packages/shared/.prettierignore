@@ -1,0 +1,9 @@
+.reports
+.svelte-kit
+build
+node_modules
+.*ignore
+*.feature
+*.lock
+*.log
+

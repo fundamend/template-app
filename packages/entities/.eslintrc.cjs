@@ -8,6 +8,10 @@ module.exports = {
 					'*',
 					// disallow relative imports
 					'**/../*',
+					// allow imports of configs
+					'!@fundamend',
+					'@fundamend/*',
+					'!@fundamend/config-*',
 					// allow self-referencing imports of src files
 					'!@template-app',
 					'@template-app/*',

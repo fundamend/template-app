@@ -19,13 +19,15 @@ class MockStorageService extends AbstractStorageService {
 }
 
 Before(function () {
-	this.createMeasure = makeCreateMeasure({ StorageService: new MockStorageService() });
+	this.createMeasure = makeCreateMeasure({
+		StorageService: new MockStorageService()
+	});
 });
 
 When('a measure is created', async function () {
 	this.result = await this.createMeasure('dimension', { value: 123 });
 });
 
-Then('the measure\'s value should be {float}', function (float) {
+Then("the measure's value should be {float}", function (float) {
 	expect(this.result.value).to.equal(float);
 });

@@ -23,7 +23,7 @@ const validateJWT = async ({ request, next, env }) => {
 	}
 
 	if (!isValid) {
-		return new Response(null, { status: 401 });
+		return new Response('invalid session token', { status: 401 });
 	} else {
 		return next();
 	}
