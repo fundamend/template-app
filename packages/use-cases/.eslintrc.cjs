@@ -27,7 +27,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['*.test.js', '*.steps.js'],
+			files: ['*.test.js', '*.steps.js', 'features/support/*.js'],
 			rules: { 'no-restricted-imports': 0 }
 		}
 	]
