@@ -7,8 +7,18 @@ export const SchemaOrbit = new RecordSchema({
 				name: { type: 'string ' }
 			},
 			relationships: {
-				measures: { kind: 'hasMany', type: 'measure', inverse: 'dimension' },
-				milestones: { kind: 'hasMany', type: 'milestone', inverse: 'dimension' }
+				measures: {
+					kind: 'hasMany',
+					type: 'measure',
+					inverse: 'dimension',
+					dependent: 'remove'
+				},
+				milestones: {
+					kind: 'hasMany',
+					type: 'milestone',
+					inverse: 'dimension',
+					dependent: 'remove'
+				}
 			}
 		},
 		measure: {
