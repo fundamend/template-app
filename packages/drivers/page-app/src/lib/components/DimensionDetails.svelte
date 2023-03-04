@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 
 	import MeasureList from '$lib/components/MeasureList.svelte';
+	import MilestoneList from '$lib/components/MilestoneList.svelte';
 
 	const dependencyContainer = getContext('dependencyContainer');
 	const dispatch = createEventDispatcher();
@@ -34,4 +35,5 @@
 	<button on:click={handleSave}>Save</button>
 	<button on:click={handleDelete}>X</button>
 	<MeasureList dimension={dimension.id} />
+	<MilestoneList dimension={dimension.id} />
 {/if}

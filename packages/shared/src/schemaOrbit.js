@@ -31,10 +31,12 @@ export const SchemaOrbit = new RecordSchema({
 		},
 		milestone: {
 			attributes: {
-				name: { type: 'string ' }
+				threshold: { type: 'float' },
+				type: { type: 'string' },
+				reached: { type: 'boolean' }
 			},
 			relationships: {
-				dimension: { kind: 'hasOne', type: 'dimension', inverse: 'milestone' }
+				dimension: { kind: 'hasOne', type: 'dimension', inverse: 'milestones' }
 			}
 		}
 	}

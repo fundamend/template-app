@@ -8,14 +8,15 @@ export class Milestone extends Base {
 
 	constructor(id) {
 		super(id);
-	}
-
-	get dimension() {
-		return this.#dimension;
+		this.reached = false;
 	}
 
 	set dimension(dimension) {
 		this.#dimension = dimension;
+	}
+
+	get dimension() {
+		return this.#dimension;
 	}
 
 	set threshold(threshold) {
@@ -40,5 +41,19 @@ export class Milestone extends Base {
 
 	get reached() {
 		return this.#reached;
+	}
+
+	fromObject(object) {
+		return Object.assign(this, object);
+	}
+
+	toJSON() {
+		return {
+			id: this.id,
+			dimension: this.dimension,
+			threshold: this.threshold,
+			type: this.type,
+			reached: this.reached
+		};
 	}
 }

@@ -5,14 +5,17 @@ import AbstractStorageService from '@fundamend/service-storage-abstract';
 import {
 	makeCreateDimension,
 	makeCreateMeasure,
+	makeCreateMilestone,
 	makeDeleteDimension,
 	makeDeleteMeasure,
+	makeDeleteMilestone,
 	makeFindDimensions,
 	makeFindRelatedMeasures,
 	makeListDimensions,
 	makeReadDimension,
 	makeSubscribeDimensions,
 	makeSubscribeRelatedMeasures,
+	makeSubscribeRelatedMilestones,
 	makeUpdateDimension
 } from '@template-app/use-cases';
 
@@ -33,10 +36,16 @@ Before(function () {
 	this.createMeasure = makeCreateMeasure({
 		StorageService: this.mockStorageService
 	});
+	this.createMilestone = makeCreateMilestone({
+		StorageService: this.mockStorageService
+	});
 	this.deleteDimension = makeDeleteDimension({
 		StorageService: this.mockStorageService
 	});
 	this.deleteMeasure = makeDeleteMeasure({
+		StorageService: this.mockStorageService
+	});
+	this.deleteMilestone = makeDeleteMilestone({
 		StorageService: this.mockStorageService
 	});
 	this.findDimension = makeFindDimensions({
@@ -55,6 +64,9 @@ Before(function () {
 		StorageService: this.mockStorageService
 	});
 	this.subscribeRelatedMeasures = makeSubscribeRelatedMeasures({
+		StorageService: this.mockStorageService
+	});
+	this.subscribeRelatedMilestones = makeSubscribeRelatedMilestones({
 		StorageService: this.mockStorageService
 	});
 	this.updateDimension = makeUpdateDimension({

@@ -10,28 +10,28 @@ export class Measure extends Base {
 		this.#timestamp = new Date().toISOString();
 	}
 
-	get value() {
-		return this.#value;
-	}
-
 	set value(value) {
 		this.#value = value;
 	}
 
-	get dimension() {
-		return this.#dimension;
+	get value() {
+		return this.#value;
 	}
 
 	set dimension(dimension) {
 		this.#dimension = dimension;
 	}
 
-	get timestamp() {
-		return this.#timestamp;
+	get dimension() {
+		return this.#dimension;
 	}
 
 	set timestamp(timestamp) {
 		this.#timestamp = new Date(timestamp).toISOString();
+	}
+
+	get timestamp() {
+		return this.#timestamp;
 	}
 
 	fromObject(object) {

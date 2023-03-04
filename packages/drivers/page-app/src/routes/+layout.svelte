@@ -9,15 +9,18 @@
 
 	import { makeCreateDimension } from '@template-app/use-cases';
 	import { makeCreateMeasure } from '@template-app/use-cases';
+	import { makeCreateMilestone } from '@template-app/use-cases';
 	import { makeReadDimension } from '@template-app/use-cases';
 	import { makeUpdateDimension } from '@template-app/use-cases';
 	import { makeDeleteDimension } from '@template-app/use-cases';
 	import { makeDeleteMeasure } from '@template-app/use-cases';
+	import { makeDeleteMilestone } from '@template-app/use-cases';
 	import { makeListDimensions } from '@template-app/use-cases';
 	import { makeSubscribeDimensions } from '@template-app/use-cases';
 	import { makeFindDimensions } from '@template-app/use-cases';
 	import { makeFindRelatedMeasures } from '@template-app/use-cases';
 	import { makeSubscribeRelatedMeasures } from '@template-app/use-cases';
+	import { makeSubscribeRelatedMilestones } from '@template-app/use-cases';
 	import { SchemaOrbit } from '@template-app/shared';
 
 	const dependencyContainer = new DependencyContainer();
@@ -82,6 +85,11 @@
 		},
 		{
 			type: 'function',
+			name: 'createMilestone',
+			value: makeCreateMilestone
+		},
+		{
+			type: 'function',
 			name: 'readDimension',
 			value: makeReadDimension
 		},
@@ -124,6 +132,16 @@
 			type: 'function',
 			name: 'subscribeRelatedMeasures',
 			value: makeSubscribeRelatedMeasures
+		},
+		{
+			type: 'function',
+			name: 'subscribeRelatedMilestones',
+			value: makeSubscribeRelatedMilestones
+		},
+		{
+			type: 'function',
+			name: 'deleteMilestone',
+			value: makeDeleteMilestone
 		}
 	]);
 
