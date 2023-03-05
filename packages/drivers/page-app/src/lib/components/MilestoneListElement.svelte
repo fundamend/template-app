@@ -16,5 +16,8 @@
 </script>
 
 {#if milestone}
-	<p>{milestone.threshold} <button on:click={handleClick}>X</button></p>
+	<p>
+		<a href={`milestone?id=${milestone.id}`}>{milestone.threshold}</a>
+		<button on:click={handleClick}>X</button>
+	</p>
 {/if}

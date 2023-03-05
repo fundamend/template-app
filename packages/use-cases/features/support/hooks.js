@@ -10,13 +10,16 @@ import {
 	makeDeleteMeasure,
 	makeDeleteMilestone,
 	makeFindDimensions,
+	makeFindMilestones,
 	makeFindRelatedMeasures,
 	makeListDimensions,
 	makeReadDimension,
+	makeReadMilestone,
 	makeSubscribeDimensions,
 	makeSubscribeRelatedMeasures,
 	makeSubscribeRelatedMilestones,
-	makeUpdateDimension
+	makeUpdateDimension,
+	makeUpdateMilestone
 } from '@template-app/use-cases';
 
 setWorldConstructor(World);
@@ -51,6 +54,9 @@ Before(function () {
 	this.findDimension = makeFindDimensions({
 		StorageService: this.mockStorageService
 	});
+	this.findMilestones = makeFindMilestones({
+		StorageService: this.mockStorageService
+	});
 	this.findRelatedMeasures = makeFindRelatedMeasures({
 		StorageService: this.mockStorageService
 	});
@@ -58,6 +64,9 @@ Before(function () {
 		StorageService: this.mockStorageService
 	});
 	this.readDimension = makeReadDimension({
+		StorageService: this.mockStorageService
+	});
+	this.readMilestone = makeReadMilestone({
 		StorageService: this.mockStorageService
 	});
 	this.subscribeDimensions = makeSubscribeDimensions({
@@ -70,6 +79,9 @@ Before(function () {
 		StorageService: this.mockStorageService
 	});
 	this.updateDimension = makeUpdateDimension({
+		StorageService: this.mockStorageService
+	});
+	this.updateMilestone = makeUpdateMilestone({
 		StorageService: this.mockStorageService
 	});
 });

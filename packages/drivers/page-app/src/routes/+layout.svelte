@@ -11,13 +11,16 @@
 	import { makeCreateMeasure } from '@template-app/use-cases';
 	import { makeCreateMilestone } from '@template-app/use-cases';
 	import { makeReadDimension } from '@template-app/use-cases';
+	import { makeReadMilestone } from '@template-app/use-cases';
 	import { makeUpdateDimension } from '@template-app/use-cases';
+	import { makeUpdateMilestone } from '@template-app/use-cases';
 	import { makeDeleteDimension } from '@template-app/use-cases';
 	import { makeDeleteMeasure } from '@template-app/use-cases';
 	import { makeDeleteMilestone } from '@template-app/use-cases';
 	import { makeListDimensions } from '@template-app/use-cases';
 	import { makeSubscribeDimensions } from '@template-app/use-cases';
 	import { makeFindDimensions } from '@template-app/use-cases';
+	import { makeFindMilestones } from '@template-app/use-cases';
 	import { makeFindRelatedMeasures } from '@template-app/use-cases';
 	import { makeSubscribeRelatedMeasures } from '@template-app/use-cases';
 	import { makeSubscribeRelatedMilestones } from '@template-app/use-cases';
@@ -95,8 +98,18 @@
 		},
 		{
 			type: 'function',
+			name: 'readMilestone',
+			value: makeReadMilestone
+		},
+		{
+			type: 'function',
 			name: 'updateDimension',
 			value: makeUpdateDimension
+		},
+		{
+			type: 'function',
+			name: 'updateMilestone',
+			value: makeUpdateMilestone
 		},
 		{
 			type: 'function',
@@ -122,6 +135,11 @@
 			type: 'function',
 			name: 'findDimensions',
 			value: makeFindDimensions
+		},
+		{
+			type: 'function',
+			name: 'findMilestones',
+			value: makeFindMilestones
 		},
 		{
 			type: 'function',
