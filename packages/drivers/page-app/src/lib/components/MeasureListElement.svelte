@@ -16,5 +16,8 @@
 </script>
 
 {#if measure}
-	<p>{measure.value} <button on:click={handleClick}>X</button></p>
+	<p>
+		<a href={`measure?id=${measure.id}`}>{measure.value}</a>
+		<button on:click={handleClick}>X</button>
+	</p>
 {/if}

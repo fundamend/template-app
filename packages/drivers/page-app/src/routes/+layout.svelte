@@ -11,8 +11,10 @@
 	import { makeCreateMeasure } from '@template-app/use-cases';
 	import { makeCreateMilestone } from '@template-app/use-cases';
 	import { makeReadDimension } from '@template-app/use-cases';
+	import { makeReadMeasure } from '@template-app/use-cases';
 	import { makeReadMilestone } from '@template-app/use-cases';
 	import { makeUpdateDimension } from '@template-app/use-cases';
+	import { makeUpdateMeasure } from '@template-app/use-cases';
 	import { makeUpdateMilestone } from '@template-app/use-cases';
 	import { makeDeleteDimension } from '@template-app/use-cases';
 	import { makeDeleteMeasure } from '@template-app/use-cases';
@@ -98,6 +100,11 @@
 		},
 		{
 			type: 'function',
+			name: 'readMeasure',
+			value: makeReadMeasure
+		},
+		{
+			type: 'function',
 			name: 'readMilestone',
 			value: makeReadMilestone
 		},
@@ -105,6 +112,11 @@
 			type: 'function',
 			name: 'updateDimension',
 			value: makeUpdateDimension
+		},
+		{
+			type: 'function',
+			name: 'updateMeasure',
+			value: makeUpdateMeasure
 		},
 		{
 			type: 'function',

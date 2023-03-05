@@ -14,11 +14,13 @@ import {
 	makeFindRelatedMeasures,
 	makeListDimensions,
 	makeReadDimension,
+	makeReadMeasure,
 	makeReadMilestone,
 	makeSubscribeDimensions,
 	makeSubscribeRelatedMeasures,
 	makeSubscribeRelatedMilestones,
 	makeUpdateDimension,
+	makeUpdateMeasure,
 	makeUpdateMilestone
 } from '@template-app/use-cases';
 
@@ -66,6 +68,9 @@ Before(function () {
 	this.readDimension = makeReadDimension({
 		StorageService: this.mockStorageService
 	});
+	this.readMeasure = makeReadMeasure({
+		StorageService: this.mockStorageService
+	});
 	this.readMilestone = makeReadMilestone({
 		StorageService: this.mockStorageService
 	});
@@ -79,6 +84,9 @@ Before(function () {
 		StorageService: this.mockStorageService
 	});
 	this.updateDimension = makeUpdateDimension({
+		StorageService: this.mockStorageService
+	});
+	this.updateMeasure = makeUpdateMeasure({
 		StorageService: this.mockStorageService
 	});
 	this.updateMilestone = makeUpdateMilestone({
