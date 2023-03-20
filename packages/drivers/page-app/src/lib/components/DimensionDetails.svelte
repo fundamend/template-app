@@ -23,8 +23,14 @@
 	}
 
 	onMount(async () => {
-		updateDimension = await dependencyContainer.resolve('updateDimension');
-		deleteDimension = await dependencyContainer.resolve('deleteDimension');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		updateDimension = useCaseFactory.make('updateDimension', {
+			StorageService: StorageService
+		});
+		deleteDimension = useCaseFactory.make('deleteDimension', {
+			StorageService: StorageService
+		});
 	});
 
 	// TODO: MeasureList should just take a list of measures which should be loaded here

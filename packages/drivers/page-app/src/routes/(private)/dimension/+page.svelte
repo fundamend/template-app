@@ -15,7 +15,11 @@
 	}
 
 	onMount(async () => {
-		findDimensions = await dependencyContainer.resolve('findDimensions');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		findDimensions = useCaseFactory.make('findDimensions', {
+			StorageService: StorageService
+		});
 
 		// TODO: maybe there is a better way to do this
 		dimensionPromise = new Promise((resolve) => {

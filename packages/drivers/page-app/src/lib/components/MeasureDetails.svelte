@@ -20,8 +20,14 @@
 	}
 
 	onMount(async () => {
-		updateMeasure = await dependencyContainer.resolve('updateMeasure');
-		deleteMeasure = await dependencyContainer.resolve('deleteMeasure');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		updateMeasure = useCaseFactory.make('updateMeasure', {
+			StorageService: StorageService
+		});
+		deleteMeasure = useCaseFactory.make('deleteMeasure', {
+			StorageService: StorageService
+		});
 	});
 </script>
 

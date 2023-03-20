@@ -6,9 +6,11 @@
 	let dimensions = [];
 
 	onMount(async () => {
-		const subscribeDimensions = await dependencyContainer.resolve(
-			'subscribeDimensions'
-		);
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		const subscribeDimensions = useCaseFactory.make('subscribeDimensions', {
+			StorageService: StorageService
+		});
 
 		subscribeDimensions((results) => {
 			dimensions = results;

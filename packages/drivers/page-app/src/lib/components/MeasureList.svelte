@@ -19,9 +19,14 @@
 	}
 
 	onMount(async () => {
-		createMeasure = await dependencyContainer.resolve('createMeasure');
-		const subscribeRelatedMeasures = await dependencyContainer.resolve(
-			'subscribeRelatedMeasures'
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		createMeasure = useCaseFactory.make('createMeasure', {
+			StorageService: StorageService
+		});
+		const subscribeRelatedMeasures = useCaseFactory.make(
+			'subscribeRelatedMeasures',
+			{ StorageService: StorageService }
 		);
 
 		subscribeRelatedMeasures(

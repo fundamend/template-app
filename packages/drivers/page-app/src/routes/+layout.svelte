@@ -5,27 +5,8 @@
 	import AuthenticationService from '@fundamend/service-authentication-clerk';
 	import CrashService from '@fundamend/service-crash-sentry-browser';
 	import DependencyContainer from '@fundamend/service-dependency-container-awilix';
+	import UseCaseFactory from '@template-app/use-cases';
 	import StorageService from '@fundamend/service-storage-orbit';
-
-	import { makeCreateDimension } from '@template-app/use-cases';
-	import { makeCreateMeasure } from '@template-app/use-cases';
-	import { makeCreateMilestone } from '@template-app/use-cases';
-	import { makeReadDimension } from '@template-app/use-cases';
-	import { makeReadMeasure } from '@template-app/use-cases';
-	import { makeReadMilestone } from '@template-app/use-cases';
-	import { makeUpdateDimension } from '@template-app/use-cases';
-	import { makeUpdateMeasure } from '@template-app/use-cases';
-	import { makeUpdateMilestone } from '@template-app/use-cases';
-	import { makeDeleteDimension } from '@template-app/use-cases';
-	import { makeDeleteMeasure } from '@template-app/use-cases';
-	import { makeDeleteMilestone } from '@template-app/use-cases';
-	import { makeListDimensions } from '@template-app/use-cases';
-	import { makeSubscribeDimensions } from '@template-app/use-cases';
-	import { makeFindDimensions } from '@template-app/use-cases';
-	import { makeFindMilestones } from '@template-app/use-cases';
-	import { makeFindRelatedMeasures } from '@template-app/use-cases';
-	import { makeSubscribeRelatedMeasures } from '@template-app/use-cases';
-	import { makeSubscribeRelatedMilestones } from '@template-app/use-cases';
 	import { SchemaOrbit } from '@template-app/shared';
 
 	const dependencyContainer = new DependencyContainer();
@@ -77,101 +58,11 @@
 			value: StorageService,
 			singleton: true
 		},
-		// functions
 		{
-			type: 'function',
-			name: 'createDimension',
-			value: makeCreateDimension
-		},
-		{
-			type: 'function',
-			name: 'createMeasure',
-			value: makeCreateMeasure
-		},
-		{
-			type: 'function',
-			name: 'createMilestone',
-			value: makeCreateMilestone
-		},
-		{
-			type: 'function',
-			name: 'readDimension',
-			value: makeReadDimension
-		},
-		{
-			type: 'function',
-			name: 'readMeasure',
-			value: makeReadMeasure
-		},
-		{
-			type: 'function',
-			name: 'readMilestone',
-			value: makeReadMilestone
-		},
-		{
-			type: 'function',
-			name: 'updateDimension',
-			value: makeUpdateDimension
-		},
-		{
-			type: 'function',
-			name: 'updateMeasure',
-			value: makeUpdateMeasure
-		},
-		{
-			type: 'function',
-			name: 'updateMilestone',
-			value: makeUpdateMilestone
-		},
-		{
-			type: 'function',
-			name: 'deleteDimension',
-			value: makeDeleteDimension
-		},
-		{
-			type: 'function',
-			name: 'deleteMeasure',
-			value: makeDeleteMeasure
-		},
-		{
-			type: 'function',
-			name: 'listDimensions',
-			value: makeListDimensions
-		},
-		{
-			type: 'function',
-			name: 'subscribeDimensions',
-			value: makeSubscribeDimensions
-		},
-		{
-			type: 'function',
-			name: 'findDimensions',
-			value: makeFindDimensions
-		},
-		{
-			type: 'function',
-			name: 'findMilestones',
-			value: makeFindMilestones
-		},
-		{
-			type: 'function',
-			name: 'findRelatedMeasures',
-			value: makeFindRelatedMeasures
-		},
-		{
-			type: 'function',
-			name: 'subscribeRelatedMeasures',
-			value: makeSubscribeRelatedMeasures
-		},
-		{
-			type: 'function',
-			name: 'subscribeRelatedMilestones',
-			value: makeSubscribeRelatedMilestones
-		},
-		{
-			type: 'function',
-			name: 'deleteMilestone',
-			value: makeDeleteMilestone
+			type: 'class',
+			name: 'UseCaseFactory',
+			value: UseCaseFactory,
+			singleton: true
 		}
 	]);
 

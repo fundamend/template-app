@@ -11,7 +11,11 @@
 	}
 
 	onMount(async () => {
-		deleteMeasure = await dependencyContainer.resolve('deleteMeasure');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		deleteMeasure = useCaseFactory.make('deleteMeasure', {
+			StorageService: StorageService
+		});
 	});
 </script>
 

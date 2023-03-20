@@ -12,7 +12,11 @@
 	}
 
 	onMount(async () => {
-		createDimension = await dependencyContainer.resolve('createDimension');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		createDimension = useCaseFactory.make('createDimension', {
+			StorageService: StorageService
+		});
 	});
 </script>
 

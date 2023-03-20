@@ -46,7 +46,8 @@
 		"./src/findMilestones.js": "./src/findMilestones.js",
 		"./src/findRelatedMeasures.js": "./src/findRelatedMeasures.js",
 		"./src/subscribeRelatedMeasures.js": "./src/subscribeRelatedMeasures.js",
-		"./src/subscribeRelatedMilestones.js": "./src/subscribeRelatedMilestones.js"
+		"./src/subscribeRelatedMilestones.js": "./src/subscribeRelatedMilestones.js",
+		"./src/updateMilestoneReached.js": "./src/updateMilestoneReached.js"
 	},
 	"license": "MIT",
 	"main": "src/index.js",

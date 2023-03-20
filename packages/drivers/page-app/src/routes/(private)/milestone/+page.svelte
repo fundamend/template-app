@@ -14,7 +14,11 @@
 	}
 
 	onMount(async () => {
-		readMilestone = await dependencyContainer.resolve('readMilestone');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		readMilestone = useCaseFactory.make('readMilestone', {
+			StorageService: StorageService
+		});
 
 		// TODO: maybe there is a better way to do this
 		milestonePromise = new Promise((resolve) => {

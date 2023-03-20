@@ -11,7 +11,11 @@
 	}
 
 	onMount(async () => {
-		deleteMilestone = await dependencyContainer.resolve('deleteMilestone');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		deleteMilestone = useCaseFactory.make('deleteMilestone', {
+			StorageService: StorageService
+		});
 	});
 </script>
 

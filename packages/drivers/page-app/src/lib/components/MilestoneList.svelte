@@ -20,9 +20,19 @@
 	}
 
 	onMount(async () => {
-		createMilestone = await dependencyContainer.resolve('createMilestone');
-		const subscribeRelatedMilestones = await dependencyContainer.resolve(
-			'subscribeRelatedMilestones'
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		const updateMilestoneReached = useCaseFactory.make(
+			'updateMilestoneReached',
+			{ StorageService: StorageService }
+		);
+		createMilestone = useCaseFactory.make('createMilestone', {
+			StorageService: StorageService,
+			updateMilestoneReached: updateMilestoneReached
+		});
+		const subscribeRelatedMilestones = useCaseFactory.make(
+			'subscribeRelatedMilestones',
+			{ StorageService: StorageService }
 		);
 
 		subscribeRelatedMilestones(

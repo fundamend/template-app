@@ -14,7 +14,11 @@
 	}
 
 	onMount(async () => {
-		readMeasure = await dependencyContainer.resolve('readMeasure');
+		const useCaseFactory = await dependencyContainer.resolve('UseCaseFactory');
+		const StorageService = await dependencyContainer.resolve('StorageService');
+		readMeasure = useCaseFactory.make('readMeasure', {
+			StorageService: StorageService
+		});
 
 		// TODO: maybe there is a better way to do this
 		measurePromise = new Promise((resolve) => {
